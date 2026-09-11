@@ -188,6 +188,43 @@ a.tg-link:hover{color:var(--accent-2); border-color:var(--accent-2)}
 .unit .ugram{display:flex; flex-wrap:wrap; gap:6px; margin-top:7px; grid-column:2}
 .unit .ugram span{font-family:'IBM Plex Mono','Noto Sans Mono',ui-monospace,monospace; font-size:.71rem; background:var(--surface-2); border:1px solid var(--line); border-radius:6px; padding:2px 7px}
 .unit .urow{display:flex; gap:10px; align-items:center; flex-wrap:wrap; grid-column:2; margin-top:9px}
+.twocol{display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:16px}
+.tlist{margin:0; padding-left:18px; display:flex; flex-direction:column; gap:8px}
+.tlist li{font-size:.93rem}
+.tlist li b{font-weight:600}
+
+/* прогресс в кабинете */
+.progpath{display:flex; flex-direction:column; gap:10px}
+.progbar{position:relative; height:14px; border-radius:99px; background:var(--surface-2); overflow:hidden}
+.progbar i{display:block; height:100%; border-radius:99px; background:linear-gradient(90deg,var(--l2),var(--accent))}
+.progbar u{position:absolute; top:-4px; width:2px; height:22px; background:var(--gold)}
+.progmarks{display:flex; justify-content:space-between; font-family:'IBM Plex Mono','Noto Sans Mono',ui-monospace,monospace; font-size:.72rem; color:var(--muted)}
+.progmarks span.on{color:var(--accent); font-weight:600}
+.statgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(128px,1fr)); gap:12px}
+.statbox{border:1px solid var(--line); border-radius:11px; padding:13px 15px; background:var(--surface-2); display:flex; flex-direction:column; gap:2px}
+.statbox b{font-family:'Bitter','Noto Serif',Georgia,serif; font-size:1.5rem; line-height:1.15; color:var(--accent)}
+.statbox span{font-size:.75rem; color:var(--muted); line-height:1.35}
+.deltas{display:flex; flex-direction:column}
+.deltarow{display:grid; grid-template-columns:minmax(96px,auto) 1fr auto; gap:10px 14px; align-items:center; padding-block:9px; border-bottom:1px solid var(--line)}
+.deltarow:last-child{border-bottom:none}
+.deltarow .dn{font-size:.9rem}
+.deltarow .dv{font-family:'IBM Plex Mono','Noto Sans Mono',ui-monospace,monospace; font-size:.8rem; text-align:right}
+.deltarow .dv.up{color:var(--ok)} .deltarow .dv.down{color:var(--bad)} .deltarow .dv.same{color:var(--muted)}
+.twotrack{display:flex; height:9px; border-radius:99px; overflow:hidden; background:var(--surface-2)}
+.twotrack i{display:block; height:100%}
+.masterbar{display:flex; height:12px; border-radius:99px; overflow:hidden; background:var(--surface-2)}
+.masterbar i{display:block; height:100%}
+.masterleg{display:flex; flex-wrap:wrap; gap:6px 16px; font-size:.8rem; color:var(--muted)}
+.masterleg em{font-style:normal; display:inline-flex; align-items:center; gap:6px}
+.masterleg s{text-decoration:none; width:9px; height:9px; border-radius:3px; display:inline-block}
+
+/* серия дней */
+.streakhead{display:flex; align-items:center; gap:18px; flex-wrap:wrap}
+.streaknum{font-family:'Bitter','Noto Serif',Georgia,serif; font-size:2.4rem; font-weight:700; color:var(--gold); line-height:1}
+.daygrid{display:grid; grid-template-columns:repeat(14,1fr); gap:5px; max-width:420px}
+.daygrid i{display:block; aspect-ratio:1; border-radius:4px; background:var(--surface-2); border:1px solid var(--line)}
+.daygrid i.done{background:var(--accent); border-color:var(--accent)}
+.daygrid i.today{outline:2px solid var(--gold); outline-offset:1px}
 .bookref{display:grid; grid-template-columns:1fr auto; gap:4px 14px; padding-block:11px; border-bottom:1px solid var(--line)}
 .bookref:last-child{border-bottom:none}
 .bookref .brt{font-weight:500}
@@ -364,6 +401,7 @@ footer.foot{margin-top:44px; padding-top:20px; border-top:1px solid var(--line);
     <button class="btn btn-sm" id="btn-pause" type="button" hidden data-l>Пауза</button>
     <button class="btn btn-sm" id="btn-exit" type="button" hidden data-l>Выйти</button>
     <div class="langsw"><button type="button" id="lang-ru" class="on">RU</button><button type="button" id="lang-tr">TR</button></div>
+    <button class="btn btn-sm" id="btn-tomer" type="button" data-l>TÖMER</button>
     <button class="btn btn-sm" id="btn-books" type="button" data-l>Материалы</button>
     <button class="btn btn-sm" id="btn-modes" type="button" data-l>Режимы</button>
     <button class="btn btn-sm" id="btn-cabinet" type="button" data-l>Кабинет</button>
@@ -384,7 +422,7 @@ footer.foot{margin-top:44px; padding-top:20px; border-top:1px solid var(--line);
     </div>
     <div class="facts">
       <span><b>5</b> <span data-l>уровней A1 - C1</span></span>
-      <span><b>6</b> <span data-l>режимов</span></span>
+      <span><b>7</b> <span data-l>режимов</span></span>
       <span><b>47</b> <span data-l>заданий в полном экзамене</span></span>
       <span><b>1033</b> <span data-l>заданий в банке</span></span>
     </div>
@@ -436,6 +474,8 @@ footer.foot{margin-top:44px; padding-top:20px; border-top:1px solid var(--line);
 <section id="s-profile" class="stack-lg" hidden style="padding-top:36px"></section>
 
 <section id="s-books" class="stack-lg" hidden style="padding-top:36px"></section>
+
+<section id="s-tomer" class="stack-lg" hidden style="padding-top:36px"></section>
 
 <section id="s-config" class="stack-lg" hidden style="padding-top:36px">
   <div class="stack">
@@ -536,7 +576,7 @@ var LANGKEY="alterna_lang_v1";
 var LANG=(function(){ try{ return localStorage.getItem(LANGKEY)==="tr"?"tr":"ru"; }catch(e){ return "ru"; } })();
 var DICT_TR={"  |  Верно: ": "  |  Doğru: ", " · вопрос ": " · soru ", " · время: ": " · süre: ", " · ошибок: ": " · hata: ", " · попыток: ": " · deneme: ", " · связь:": " · iletişim:", " Словарь: ": " Kelime hazinesi: ", " заданий": " soru", " из ": " / ", " мин ": " dk ", " сек": " sn", "-dıkça, -inceye kadar, отглагольные имена": "-dıkça, -inceye kadar, isim-fiiller", "10 - 40 заданий": "10 - 40 soru", "18 заданий": "18 soru", "18 заданий, грамматика и лексика": "18 soru, dil bilgisi ve kelime", "20 заданий": "20 soru", "3 задания на порядок слов": "3 kelime sıralama sorusu", "3 задания с вводом формы": "3 doğru biçimi yazma sorusu", "3 текста, по 3 вопроса к каждому": "3 metin, her birine 3 soru", "45 минут": "45 dakika", "47 заданий": "47 soru", "5 секций": "5 bölüm", "6 - 16 заданий": "6 - 16 soru", "8000 слов и больше": "8000 kelime ve üzeri", ": гайды по грамматике, блоки лексики по темам, тренажёры и библиотека фильмов и подкастов под ваш уровень.": ": dil bilgisi rehberleri, konu konu kelime blokları, antrenmanlar ve seviyenize uygun film ve podcast kütüphanesi.", "Alterna · sonuç belgesi / протокол результата": "Alterna · sonuç belgesi", "Alterna · платформа изучения турецкого для русскоязычных. Уровни A0 - C1, грамматика, лексика, экзамены, библиотека материалов.": "Alterna · Rusça konuşanlar için Türkçe öğrenme platformu. A0 - C1 seviyeleri, dil bilgisi, kelime, sınavlar, materyal kütüphanesi.", "Antrenman · Тренажёр": "Antrenman", "Basamaktaki yeriniz · Ваше место на лестнице": "Basamaktaki yeriniz", "Bölümlere göre · По секциям": "Bölümlere göre", "Doğru · Верно": "Doğru", "Hata analizi · Разбор ошибок": "Hata analizi", "Hata analizi · Разбор ошибок (": "Hata analizi (", "Kelime hazinesi · Активный словарь": "Kelime hazinesi", "Kişisel kabin · Личный кабинет": "Kişisel kabin", "Konu istatistiği · Статистика по темам": "Konu istatistiği", "Kullanım kılavuzu · Инструкция": "Kullanım kılavuzu", "PDF недоступен": "PDF kullanılamıyor", "Paylaş · Картинка для соцсетей": "Paylaş", "Rivayet birleşik zamanlar и -mışçasına": "Rivayet birleşik zamanlar ve -mışçasına", "Seviye basamakları · Лестница уровней": "Seviye basamakları", "Sınav modları · Режимы": "Sınav modları", "Tam tablo · Полная таблица заданий": "Tam tablo", "Tekrar edilecek konular · Темы на повтор": "Tekrar edilecek konular", "Yanlış · Ошибка": "Yanlış", "\" id=\"btn-cab-start\" type=\"button\">Пройти экзамен": "\" id=\"btn-cab-start\" type=\"button\">Sınava gir", "\" role=\"img\" aria-label=\"Динамика уровня\" style=\"max-width:100%\">": "\" role=\"img\" aria-label=\"Seviye değişimi\" style=\"max-width:100%\">", "\">Разбор": "\">Analiz", "\">Тренировать уровень ": "\">Antrenman: seviye ", "Öneri · Рекомендация": "Öneri", "Öneri · Что делать дальше": "Öneri", "Адаптивный блок": "Adaptif blok", "Адаптивный тест": "Adaptif test", "Академическое чтение и пересказ статей": "Akademik okuma ve makale özetleme", "Алфавит и чтение вслух: турецкий читается как пишется, это займёт два дня": "Alfabe ve sesli okuma: Türkçe yazıldığı gibi okunur, bu iki gününüzü alır", "Аудирование": "Dinleme", "Аудирование озвучивается синтезом речи вашего браузера. Если турецкого голоса в системе нет, страница честно скажет об этом и предложит пропустить секцию.": "Dinleme bölümü tarayıcınızın konuşma sentezi ile seslendirilir. Sisteminizde Türkçe ses yoksa sayfa bunu açıkça söyler ve bölümü atlamanızı önerir.", "В кабинет": "Kabine git", "Ваш ответ": "Cevabınız", "Ваш ответ: ": "Cevabınız: ", "Ваш уровень турецкого, измеренный по программе": "Programa göre ölçülen Türkçe seviyeniz", "Верно": "Doğru", "Вернуться к предыдущему вопросу нельзя, как на настоящем экзамене. Варианты выбираются мышью или клавишами 1 - 4, переход дальше клавишей Enter. В тренажёре ответ проверяется сразу и показывается объяснение.": "Gerçek sınavdaki gibi önceki soruya dönemezsiniz. Seçenekleri fareyle ya da 1 - 4 tuşlarıyla seçer, Enter ile ilerlersiniz. Antrenmanda cevap anında kontrol edilir ve açıklama gösterilir.", "Вернуться назад нельзя": "Geri dönüş yok", "Виртуальный экзамен": "Sanal sınav", "Виртуальный экзамен TÖMER, если нужен честный результат под сертификацию. Адаптивный, если нужен уровень за десять минут. Тренажёр, если хотите отработать конкретную секцию или уровень.": "Sertifika için dürüst bir sonuç gerekiyorsa sanal TÖMER sınavı. Seviyenizi on dakikada öğrenmek istiyorsanız adaptif test. Belirli bir bölümü ya da seviyeyi çalışmak istiyorsanız antrenman.", "Возможность -abilmek и отрицание -amamak": "Yeterlilik -abilmek ve olumsuzu -amamak", "Вопрос ": "Soru ", "Восемнадцать заданий, которые подстраиваются под ваши ответы. Самый быстрый способ узнать уровень.": "Cevaplarınıza göre uyarlanan on sekiz soru. Seviyenizi öğrenmenin en hızlı yolu.", "Времена в связке: -yordu, -mıştı, -ırdı": "Birleşik zamanlar: -yordu, -mıştı, -ırdı", "Время вышло, экзамен закрыт автоматически. Неотвеченные задания в подсчёт не вошли.": "Süre doldu, sınav otomatik olarak kapandı. Cevaplanmayan sorular değerlendirmeye girmedi.", "Выберите режим": "Bir mod seçin", "Выбрать режим": "Mod seç", "Выражаетесь гибко и точно, понимаете подтекст и сложные тексты, владеете официальным регистром: документы, лекции, деловая переписка.": "Kendinizi esnek ve tam olarak ifade ediyor, alt metni ve zor metinleri anlıyor, resmi dile hakim oluyorsunuz: belgeler, dersler, iş yazışmaları.", "Гармония гласных, на ней держится вся грамматика": "Ünlü uyumu, bütün dil bilgisi buna dayanır", "Гость": "Misafir", "Готовлю PDF...": "PDF hazırlanıyor...", "Грамматика": "Dil bilgisi", "Далее": "Devam", "Двадцать заданий на лексику от A1 до C1. В конце оценка активного словаря в словах.": "A1'den C1'e kadar yirmi kelime sorusu. Sonunda aktif kelime hazineniz kelime sayısıyla tahmin edilir.", "Деепричастия -arak и -ken": "Zarf-fiiller -arak ve -ken", "Другой режим": "Başka mod", "Задания идут по нарастанию сложности": "Sorular zorluk sırasına göre ilerler", "Задания на конструкции программы: от настоящего времени до книжных форм C1.": "Programdaki yapılara yönelik sorular: şimdiki zamandan C1 seviyesindeki kitabi biçimlere kadar.", "Задания только по темам, где вы чаще всего ошибались. Список берётся из вашей статистики в кабинете.": "Yalnızca en çok hata yaptığınız konulardan sorular. Liste, kabindeki istatistiklerinizden alınır.", "Закрепить падежи и настоящее время -yor": "Hal eklerini ve şimdiki zaman -yor biçimini pekiştirmek", "Залоги: страдательный и побудительный": "Çatılar: edilgen ve ettirgen", "Запись: ": "Kayıt: ", "Имя для кабинета и для результата": "Kabin ve sonuç belgesi için isim", "История попыток": "Deneme geçmişi", "К выбору режима": "Mod seçimine dön", "Кабинет": "Kabin", "Каждая попытка ложится в личный кабинет: динамика уровня, статистика по темам, слабые места, которые повторяются от раза к разу.": "Her deneme kişisel kabine kaydedilir: seviye değişimi, konu istatistikleri ve her seferinde tekrar eden zayıf noktalar.", "Каждое задание привязано к теме программы": "Her soru programdaki bir konuya bağlıdır", "Каждую запись можно прослушать дважды": "Her kaydı iki kez dinleyebilirsiniz", "Как пользоваться экзаменом": "Sınav nasıl kullanılır", "Как проходит секция": "Bölüm nasıl işler", "Как это работает": "Nasıl çalışır", "Какую секцию сдаём": "Hangi bölümü çözüyoruz", "Канал в Telegram": "Telegram kanalı", "Квадрат 1080 на 1080 с вашим уровнем, готов для сторис и постов.": "Seviyenizin yazdığı 1080 x 1080 kare görsel, hikaye ve gönderiler için hazır.", "Конструкции -meden önce, -dikten sonra, -mek için": "-meden önce, -dikten sonra, -mek için yapıları", "Короткие адаптированные тексты и объявления": "Kısa sadeleştirilmiş metinler ve duyurular", "Короткие записи: представление, объявление, инструкция, новость. Текста на экране нет.": "Kısa kayıtlar: tanışma, duyuru, yönerge, haber. Ekranda metin yok.", "Лексика и идиомы": "Kelime ve deyimler", "Лексика: дом, транспорт, покупки, кафе": "Kelime: ev, ulaşım, alışveriş, kafe", "Личные и притяжательные аффиксы": "Kişi ve iyelik ekleri", "Лучший результат: ": "En iyi sonuç: ", "На платформе Alterna это модуль ": "Alterna platformunda bu modül: ", "Назад": "Geri", "Назад к режимам": "Modlara dön", "Написать про доступ к платформе": "Platform erişimi için yaz", "Настоящее время -yor и падежи -da, -a, -dan": "Şimdiki zaman -yor ve hal ekleri -da, -a, -dan", "Начать секцию": "Bölümü başlat", "Начать тренировку": "Antrenmanı başlat", "Не угадайка на десять слов, а экзамен по секциям: грамматика, лексика, чтение, аудирование и письмо. Каждое задание привязано к теме программы уровней A1 - C1.": "On kelimelik bir tahmin oyunu değil, bölümlere ayrılmış bir sınav: dil bilgisi, kelime, okuma, dinleme ve yazma. Her soru A1 - C1 program konularından birine bağlıdır.", "Не удалось сохранить": "Kaydedilemedi", "Обсуждаете абстрактные темы, понимаете новости и статьи, аргументируете позицию, работаете с турецким текстом по специальности.": "Soyut konuları tartışıyor, haberleri ve makaleleri anlıyor, görüşünüzü gerekçelendiriyor, alanınızla ilgili Türkçe metinlerle çalışıyorsunuz.", "Общий таймер на весь экзамен: 45 минут. Он идёт и во время чтения этой страницы.": "Sınavın tamamı için tek bir süre: 45 dakika. Siz bu sayfayı okurken de işliyor.", "Объяснение к каждому заданию": "Her soru için açıklama", "Объяснить причину и условие, пересказать событие, справиться в поликлинике и в банке.": "Sebep ve şart bildirmek, bir olayı aktarmak, hastanede ve bankada işinizi görmek.", "Один письменный текст в неделю на 150 слов": "Haftada bir kez 150 kelimelik bir yazı", "Один правильный вариант из четырёх": "Dört seçenekten biri doğru", "Одна секция целиком, как на экзамене: грамматика, лексика, чтение, аудирование или письмо на выбор.": "Sınavdaki gibi tek bir bölümün tamamı: dil bilgisi, kelime, okuma, dinleme ya da yazma, seçim sizin.", "Озвучивает синтез речи вашего браузера": "Tarayıcınızın konuşma sentezi seslendirir", "Ориентир по уровням: A1 около 500 слов, A2 около 1000, B1 около 2000, B2 около 4000, C1 от 8000. Оценка приблизительная и считается только по вашим ответам в лексике.": "Seviyelere göre yaklaşık ölçü: A1 yaklaşık 500 kelime, A2 yaklaşık 1000, B1 yaklaşık 2000, B2 yaklaşık 4000, C1 8000 ve üzeri. Tahmin yaklaşıktır ve yalnızca kelime bölümündeki cevaplarınıza göre hesaplanır.", "Ответ должен опираться на текст": "Cevap metne dayanmalı", "Ответ проверяется сразу, объяснение показывается на месте. Попытка сохраняется в кабинет с пометкой тренировки.": "Cevap anında kontrol edilir, açıklama hemen gösterilir. Deneme, antrenman işaretiyle kabine kaydedilir.", "Ответ проверяется сразу, объяснение показывается на месте. Результат тоже сохраняется в кабинет, но отдельной пометкой.": "Cevap anında kontrol edilir, açıklama hemen gösterilir. Sonuç da kabine kaydedilir ama ayrı bir işaretle.", "Отвечайте по порядку": "Sırayla cevaplayın", "Открыть кабинет": "Kabini aç", "Открыть канал Alterna": "Alterna kanalını aç", "Официальный регистр: -maksızın, -mekle birlikte, -ılarak": "Resmi dil: -maksızın, -mekle birlikte, -ılarak", "Очистить": "Temizle", "Очистить историю": "Geçmişi temizle", "Ошибки распределены по грамматике и лексике: начните с тем из списка ниже, они дадут самый быстрый прирост.": "Hatalar dil bilgisi ve kelime arasında dağılmış: aşağıdaki listedeki konulardan başlayın, en hızlı ilerlemeyi onlar sağlar.", "Ошибок нет ни в одной секции. Этот тест уже не показывает вашего потолка, дальше имеет смысл идти к официальному экзамену TÖMER.": "Hiçbir bölümde hata yok. Bu test artık tavanınızı göstermiyor, bundan sonrası için resmi TÖMER sınavına yönelmek mantıklı.", "Ошибок нет. Весь экзамен пройден без единого промаха.": "Hata yok. Sınavın tamamını tek bir yanlış yapmadan bitirdiniz.", "Первые 300 слов по темам: семья, еда, город": "İlk 300 kelime, konu konu: aile, yemek, şehir", "Письмо и построение фраз": "Yazma ve cümle kurma", "План на ближайший месяц": "Önümüzdeki ay için plan", "Пока нечего повторять: сначала пройдите любой экзамен, и здесь появятся ваши слабые темы.": "Şimdilik tekrar edilecek bir şey yok: önce herhangi bir sınavı çözün, zayıf konularınız burada görünsün.", "Пока ни одной попытки. Пройдите экзамен, и здесь появится ваш уровень, история и разбор по темам.": "Henüz hiç deneme yok. Bir sınav çözün, seviyeniz, geçmişiniz ve konu analiziniz burada görünsün.", "Пока самый старт: отдельные слова и заученные фразы. Нормальная точка входа, дальше всё строится быстро.": "Şimdilik en baştasınız: tek tek kelimeler ve ezberlenmiş kalıplar. Gayet normal bir giriş noktası, bundan sonrası hızlı ilerler.", "Показать результат": "Sonucu göster", "Показать текст": "Metni göster", "Полный экзамен по всем пяти секциям с общим таймером на 45 минут. Без подсказок по ходу, результат как на настоящем экзамене.": "Beş bölümün tamamını kapsayan, 45 dakikalık tek süreli tam sınav. Yol boyunca ipucu yok, sonuç gerçek sınavdaki gibi.", "Полоса показывает долю верных ответов, буква рядом это уровень, на котором вы уверенно держитесь в этой секции.": "Çubuk doğru cevap oranını gösterir, yanındaki harf ise bu bölümde rahatça tutunduğunuz seviyedir.", "Получите разбор": "Analizinizi alın", "Понимаете обычную речь на знакомые темы, объясняете причины, пересказываете события, спокойно путешествуете по Турции.": "Tanıdık konulardaki günlük konuşmayı anlıyor, sebep açıklıyor, olayları aktarıyor, Türkiye'de rahatça seyahat ediyorsunuz.", "Понимаете простые фразы о себе, семье и повседневных вещах, задаёте базовые вопросы, читаете короткие объявления.": "Kendiniz, aileniz ve günlük şeyler hakkındaki basit cümleleri anlıyor, temel sorular soruyor, kısa duyuruları okuyorsunuz.", "Попытки, динамика уровня и статистика по темам. Всё хранится в этом браузере и видно только вам.": "Denemeler, seviye değişimi ve konu istatistikleri. Hepsi bu tarayıcıda saklanır ve yalnızca siz görürsünüz.", "Последняя попытка": "Son deneme", "Правильный ответ: ": "Doğru cevap: ", "Правильных ответов: ": "Doğru cevap sayısı: ", "Представиться, спросить дорогу, заказать еду, понять короткое объявление.": "Kendini tanıtmak, yol sormak, yemek sipariş etmek, kısa bir duyuruyu anlamak.", "Придаточные: -dığı için, -dığı zaman, -masına rağmen": "Yan cümleler: -dığı için, -dığı zaman, -masına rağmen", "Причастия -an, -dık, -acak и косвенная речь": "Sıfat-fiiller -an, -dık, -acak ve dolaylı anlatım", "Проверить": "Kontrol et", "Проверка сразу после ответа": "Cevaptan hemen sonra kontrol", "Проверяются сочетаемость и идиомы": "Kelime birliktelikleri ve deyimler ölçülür", "Продуктивная часть: собрать предложение из слов и дописать нужную форму.": "Üretim bölümü: kelimelerden cümle kurmak ve doğru biçimi tamamlamak.", "Пропустить": "Atla", "Прослушать": "Dinle", "Прошедшее -dı и будущее -acak": "Geçmiş zaman -dı ve gelecek zaman -acak", "Работа над ошибками": "Hatalar üzerine çalışma", "Разборы грамматики и лексики по уровням выходят каждый день в телеграм канале. Там же материалы под ваш уровень ": "Seviyelere göre dil bilgisi ve kelime analizleri her gün Telegram kanalında yayımlanıyor. Seviyenize uygun materyaller de orada, sizin seviyeniz: ", "Распечатать": "Yazdır", "Рассказать о прошлом и планах, объяснить, что болит, договориться о встрече.": "Geçmişinizden ve planlarınızdan söz etmek, nerenizin ağrıdığını anlatmak, bir buluşma ayarlamak.", "Регистр букв и знаки препинания не важны": "Büyük küçük harf ve noktalama önemli değil", "Режимы": "Modlar", "Сверху темы с худшим процентом за всё время. Их и стоит закрывать первыми.": "En üstte, tüm zamanların en düşük yüzdesine sahip konular var. Önce onları kapatmak gerekir.", "Свои секции, свои уровни, свой объём. Ответ проверяется сразу, объяснение показывается на месте.": "Kendi bölümleriniz, kendi seviyeleriniz, kendi soru sayınız. Cevap anında kontrol edilir, açıklama hemen gösterilir.", "Секции": "Bölümler", "Секции идут ровно, отдельного провала нет. Работает общий план ниже, а не точечная починка одного навыка.": "Bölümler dengeli gidiyor, tek başına çöken bir alan yok. Burada tek bir beceriyi noktasal olarak onarmak değil, aşağıdaki genel plan işe yarar.", "Секция ": "Bölüm ", "Секция целиком, в экзаменационном режиме: без подсказок по ходу, разбор в конце.": "Bölümün tamamı, sınav modunda: yol boyunca ipucu yok, analiz sonda.", "Сериалы с турецкими субтитрами": "Türkçe altyazılı diziler", "Скачать PDF": "PDF indir", "Скачать картинку": "Görseli indir", "Сколько заданий": "Kaç soru", "Слабое место сейчас активное владение: вы узнаёте формы, но с трудом строите их сами. Помогает письмо по пять предложений в день.": "Şu anda zayıf nokta aktif kullanım: biçimleri tanıyorsunuz ama kendiniz kurmakta zorlanıyorsunuz. Günde beş cümle yazmak işe yarar.", "Слабое место сейчас аудирование: слушайте по десять минут в день и обязательно дважды, второй раз с текстом.": "Şu anda zayıf nokta dinleme: günde on dakika ve mutlaka iki kez dinleyin, ikinci seferde metne bakarak.", "Слабое место сейчас грамматика: разбирайте по одной конструкции в день и сразу составляйте с ней пять своих предложений.": "Şu anda zayıf nokta dil bilgisi: günde bir yapıyı inceleyin ve hemen onunla kendi beş cümlenizi kurun.", "Слабое место сейчас лексика: учите слова блоками по темам и обязательно с сочетаниями, а не по одному слову.": "Şu anda zayıf nokta kelime: kelimeleri tek tek değil, konu blokları halinde ve mutlaka birlikte kullanıldıkları sözcüklerle öğrenin.", "Слабое место сейчас чтение: берите один короткий текст в день и выписывайте из него целые фразы, а не отдельные слова.": "Şu anda zayıf nokta okuma: günde bir kısa metin alın ve ondan tek tek kelimeleri değil, bütün kalıpları not edin.", "Следите за прогрессом": "İlerlemenizi takip edin", "Слова, сочетаемость и турецкие устойчивые выражения от бытовых до книжных.": "Kelimeler, kelime birliktelikleri ve günlükten kitabiye Türkçe kalıp ifadeler.", "Сложность подстраивается под ваши ответы: верно значит труднее, ошибка значит легче.": "Zorluk cevaplarınıza göre ayarlanır: doğru cevap daha zor soru, yanlış cevap daha kolay soru demek.", "Смешанный набор по вашим настройкам. После каждого ответа сразу показывается разбор.": "Ayarlarınıza göre karışık bir soru seti. Her cevaptan sonra analiz hemen gösterilir.", "Соберите предложение, нажимая на слова по порядку.": "Kelimelere sırayla tıklayarak cümleyi kurun.", "Соберите свою тренировку": "Kendi antrenmanınızı kurun", "Сохранение картинки доступно на опубликованной странице.": "Görseli kaydetmek, yayımlanmış sayfada mümkün.", "Союзы и связки книжного стиля": "Kitabi dilde bağlaçlar ve bağlayıcılar", "Спорить по существу, понимать статьи и лекции, писать деловое письмо.": "Konunun özü üzerine tartışmak, makaleleri ve dersleri anlamak, iş mektubu yazmak.", "Справляетесь с бытовыми ситуациями: транспорт, кафе, покупки, врач. Рассказываете о прошлом и планах простыми предложениями.": "Günlük durumların üstesinden geliyorsunuz: ulaşım, kafe, alışveriş, doktor. Geçmişinizden ve planlarınızdan basit cümlelerle söz ediyorsunuz.", "Старт с уровня A2": "A2 seviyesinden başlangıç", "Текст записи открывается только в разборе": "Kaydın metni yalnızca analizde açılır", "Текст остаётся перед глазами": "Metin gözünüzün önünde kalır", "Текущий уровень": "Mevcut seviye", "Телеграм канал:": "Telegram kanalı:", "Тест словарного запаса": "Kelime hazinesi testi", "Тренажёр": "Antrenman", "Тренировать слабые места": "Zayıf noktaları çalış", "Тренировка": "Antrenman", "Три текста формата TÖMER: бытовой рассказ, официальное объявление и публицистика.": "TÖMER formatında üç metin: günlük bir anlatı, resmi bir duyuru ve bir gazete yazısı.", "Удалить все попытки и статистику по темам?": "Bütün denemeler ve konu istatistikleri silinsin mi?", "Уровень по CEFR, таблица по секциям, полный список заданий с вашими ответами, темы на повтор и план на месяц. Результат можно распечатать или сохранить в PDF.": "CEFR seviyesi, bölümlere göre tablo, cevaplarınızla birlikte soruların tam listesi, tekrar edilecek konular ve aylık plan. Sonucu yazdırabilir ya da PDF olarak kaydedebilirsiniz.", "Уровень считается по доле верных ответов": "Seviye, doğru cevap oranına göre hesaplanır", "Уровень считается по траектории ответов": "Seviye, cevapların seyrine göre hesaplanır", "Уровни": "Seviyeler", "Уровни тем расставлены по набору İstanbul Yabancılar İçin Türkçe, на котором строится обучение в TÖMER. Это учебный тест: он показывает уровень и пробелы, но не заменяет официальный сертификат TÖMER.": "Konuların seviyeleri, TÖMER'deki eğitimin dayandığı İstanbul Yabancılar İçin Türkçe setine göre belirlenmiştir. Bu bir eğitim testidir: seviyenizi ve eksiklerinizi gösterir ama resmi TÖMER sertifikasının yerini tutmaz.", "Условные формы и -maktansa": "Şart biçimleri ve -maktansa", "Хранится только в этом браузере, никуда не отправляется.": "Yalnızca bu tarayıcıda saklanır, hiçbir yere gönderilmez.", "Честные оговорки": "Dürüst uyarılar", "Четыре шага. Дольше читать, чем делать.": "Dört adım. Okuması yapmasından uzun sürer.", "Читать научный текст, улавливать иронию и подтекст, писать в официальном регистре.": "Bilimsel metin okumak, ironiyi ve alt metni yakalamak, resmi dille yazmak.", "Чтение": "Okuma", "Что вы хотите проверить сегодня": "Bugün neyi ölçmek istiyorsunuz", "Что уже можете:": "Şimdiden yapabildikleriniz:", "Экзамен ещё идёт. Выйти и потерять текущие ответы?": "Sınav hala devam ediyor. Çıkıp mevcut cevaplarınızı kaybetmek istiyor musunuz?", "Экзамен по одной секции": "Tek bölümlük sınav", "Это тренировка, а не полный экзамен. Для точного уровня пройдите виртуальный экзамен TÖMER целиком.": "Bu bir antrenman, tam sınav değil. Kesin seviyeniz için sanal TÖMER sınavının tamamını çözün.", "без таймера": "süresiz", "верно": "doğru", "вы": "siz", "вы здесь": "buradasınız", "выберите хотя бы одну секцию и уровень": "en az bir bölüm ve bir seviye seçin", "выбор секции": "bölüm seçimi", "до 15 заданий": "en fazla 15 soru", "доступно заданий: ": "kullanılabilir soru: ", "заданий в полном экзамене": "tam sınavdaki soru", "мгновенная проверка": "anında kontrol", "нажмите на ступень": "bir basamağa tıklayın", "нет ответа": "cevap yok", "около 10 минут": "yaklaşık 10 dakika", "около 1000 слов": "yaklaşık 1000 kelime", "около 2000 слов": "yaklaşık 2000 kelime", "около 4000 слов": "yaklaşık 4000 kelime", "около 500 слов": "yaklaşık 500 kelime", "около 7 минут": "yaklaşık 7 dakika", "осталось прослушиваний: ": "kalan dinleme hakkı: ", "осталось прослушиваний: 2": "kalan dinleme hakkı: 2", "оценка словаря": "kelime hazinesi tahmini", "ошибка": "hata", "ошибок": "hata", "режима": "mod", "слов, оценка по секции лексики": "kelime, kelime bölümüne göre tahmin", "тема в разборе": "analizdeki konu", "только слабые темы": "yalnızca zayıf konular", "турецкий голос в системе не найден": "sistemde Türkçe ses bulunamadı", "уровней A1 - C1": "A1 - C1 seviyesi", "фильтр по уровням": "seviye filtresi", "|  Верно:": "|  Doğru:", "· вопрос": "· soru", "· время:": "· süre:", "· ошибок:": "· hata:", "· попыток:": "· deneme:", "· связь:": "· iletişim:", "Словарь:": "Kelime hazinesi:", "заданий": "soru", "из": "/", "мин": "dk", "сек": "sn", "\">Тренировать уровень": "\">Antrenman: seviye", "Ваш ответ:": "Cevabınız:", "Вопрос": "Soru", "Запись:": "Kayıt:", "Лучший результат:": "En iyi sonuç:", "На платформе Alterna это модуль": "Alterna platformunda bu modül:", "Правильный ответ:": "Doğru cevap:", "Правильных ответов:": "Doğru cevap sayısı:", "Разборы грамматики и лексики по уровням выходят каждый день в телеграм канале. Там же материалы под ваш уровень": "Seviyelere göre dil bilgisi ve kelime analizleri her gün Telegram kanalında yayımlanıyor. Seviyenize uygun materyaller de orada, sizin seviyeniz:", "Секция": "Bölüm", "доступно заданий:": "kullanılabilir soru:", "осталось прослушиваний:": "kalan dinleme hakkı:"};
 var EXTR={"g01": "Şimdiki zamanın 1. tekil kişi çekimi: iç + iyor + um.", "g02": "Hareketin yönünü -a/-e yönelme hâli belirtir: okul + a.", "g03": "Bulunulan yeri -da/-de bulunma hâli belirtir: masa + da.", "g04": "Ünlüden sonra ses uyumuna göre 2. tekil kişi eki: nereli + sin.", "g05": "Dün sözcüğü geçmiş zamanı gerektirir: git + ti + m.", "g06": "Aitlik benim biçimiyle anlatılır: bu benim çantam değil.", "g07": "Emir kipinin 2. tekil kişisi fiil köküne eşittir: yıka.", "g08": "Bir şeyin bulunmadığını yok, bulunduğunu var anlatır.", "g09": "Gelecek hafta gelecek zaman ister: git + eceğ + iz.", "g10": "Sürekli tutum ve alışkanlık geniş zamanla anlatılır: severim.", "g11": "Geçmişteki düzenli eylemi -ardı/-erdi biçimi anlatır: giderdi.", "g12": "Soru içinde yeterlilik: çöz + ebil + ir mi sin.", "g13": "Geniş zamanda yeterliliğin olumsuzu: gel + eme + m, yani gelemeyeceğim.", "g14": "Mastardan sonra amaç için edatıyla verilir: kitap okumak için.", "g15": "Eylemlerin sıralanışı: -dıktan sonra, yani bitirdikten sonra.", "g16": "Başkasından duyulan bilgi -mış biçimiyle aktarılır: girmiş.", "g17": "Gerekiyor sözcüğünden önce iyelik ekli -ma/-me biçimi gelir: çalışman gerekiyor.", "g18": "Sebep -dığı için yapısıyla anlatılır: soğuk olduğu için.", "g19": "Karşıtlık: -masına rağmen, çok çalışmasına rağmen.", "g20": "İki eylemin karşılaştırılması: -mektense, yani şikâyet etmektense.", "g21": "Eylemin gerçekleştiği an: -ince, yani otobüsten inince.", "g22": "Eğer sözcüğünden sonra şart kipi gelir: olursa, yani vakit olursa.", "g23": "Eylemin yapılış biçimi: -arak/-erek, yani yürüyerek gidiyorum.", "g24": "Süregelen iki eylemin aynı anda olması: -ken, yani ben çalışırken.", "g25": "Edilgen çatı: yap + ıl + dı, köprü yapıldı.", "g26": "Ettirgen çatı: eylemi bir başkası yapar, kes + tir + dim.", "g27": "Giderek artan durum: -dıkça, yani zaman geçtikçe.", "g28": "Edilgen biçim ve üzerine iyelik ekli isim fiil: incelen + me + si.", "g29": "Şüphe duymak fiili ayrılma hâli ister: başaracağından şüphem yok.", "g30": "İyelik ekli -dık sıfat fiili: izlediğimiz film.", "g31": "Dolaylı anlatım: -acağını, yani gelmeyeceğini söyledi.", "g32": "Eylemin sınırı: -inceye kadar, yani sen gelinceye kadar.", "g33": "Karşıtlık bağlacı gerekir: bununla birlikte, yani yine de.", "g34": "Kişisiz anlaşılıyor yükleminde yan cümle belirtme hâli almadan -dığı biçiminde kalır.", "g35": "Gerçek olmayan bir eylemle karşılaştırma: kitabi -muşçasına biçimi, her şeyi biliyormuşçasına.", "g36": "Bitmek üzere olan eylem: -mek üzereyken, toplantı bitmek üzereyken.", "g37": "Resmî üslup: edilgen zarf fiil -ılarak, yani göz önünde bulundurularak.", "g38": "-meden biçiminin kitabi karşılığı: -meksizin, yani tek söz söylemeksizin.", "g39": "Ölçü ve derece: -acak kadar, alacak kadar büyük.", "g40": "Kişinin kendisiyle ilgili başkasından duyduğunu aktarması: yaramaz + mış + ım.", "g41": "İkili olumsuzluk: bilmiyor değilim, yani bilmediğimden değil.", "v01": "İçilecek olan yalnızca bir içecektir: çay bir içecektir.", "v02": "Ucuz sözcüğünün karşıtı pahalıdır.", "v03": "Beş dakika yürüme mesafesi yakın demektir: yakın.", "v04": "İstirahat etmek dinlenmek, kendine iyi bakmak anlamına gelir.", "v05": "Davranmak fiili davranış bildiren bir zarfla kullanılır: saygılı davranmak.", "v06": "Göz atmak kısaca bakmak, şöyle bir incelemek demektir.", "v07": "Sözlük anlamıyla pireyi deve yapmak, yani küçük bir olayı büyütmek.", "v08": "Dile getirmek bir düşünceyi söylemek, ifade etmek demektir.", "v09": "Uzlaşmaya varmak kalıbı anlaşma sağlamak anlamına gelir.", "v10": "Yol açmak fiili yönelme hâli ister; anlamca uyan sözcük ise tepkidir.", "r01": "Metinde açıkça belirtiliyor: deniz kenarındaki bir kafede çalışıyorum.", "r02": "Otobüsle işe gidiyorum, yani otobüsle.", "r03": "Pazar günleri ise çalışmıyorum, evde dinleniyorum.", "r04": "Su deposu temizlenecektir, yani su deposunun temizliğinden söz ediliyor.", "r05": "Lütfen ihtiyacınız olan suyu bir gün önceden hazırlayınız.", "r06": "Yeni tarih giriş kapısındaki panoda ilan edilecektir.", "r07": "Metinde: trafiği rahatlatmanın ve hava kirliliğini azaltmanın en ucuz yolu.", "r08": "Asıl mesele altyapının uzunluğu değil, sürekliliği ve güvenliğidir.", "r09": "Yazar vurguluyor: bu, tek seferlik bir kampanyanın değil, otuz yıllık tutarlı planlamanın sonucudur.", "w01": "Türkçede fiil cümlenin sonunda, zaman zarfı ise başında bulunur.", "w02": "-dığı için sebep yan cümlesi temel yüklemden önce gelir.", "w03": "Önce -acağını biçimindeki nesne, sonra zarf, en sonda ise yüklem: vermesi gerekirdi.", "w04": "Belirli geçmiş zamanın 1. tekil kişisi: git + ti + m.", "w05": "Etmek fiilinin edilgen çatısı edildi biçimini verir.", "w06": "Sebep: olduğu için ya da kitabi biçimiyle olduğundan.", "d01": "Kayıtta: Ankara'da yaşıyorum.", "d02": "Sebep doğrudan söyleniyor: doktora gideceğim, bu yüzden gelemeyeceğim.", "d03": "Kalkış kırk dakika ertelenmiştir, yani uçuş kırk dakika ertelendi.", "d04": "En geç cuma günü teslim etmen gerekiyor, yani cumadan sonraya kalmamalı.", "d05": "Maaştan çok esnek çalışma saatlerine, yani esnek çalışma saatleri maaştan daha önemli.", "d06": "Sessiz bölgelerin artırılması öneriliyor, yani sessiz bölgelerin sayısı artırılmalı.", "gA1_01": "Ahmet öznesi 3. tekil kişidir, bu yüzden kişi eki almayan biçim gerekir: çalışıyor. Diğer seçenekler ben, biz ve onlar anlamı verir.", "gA1_02": "Binmek fiili -(y)A yönelme hâli ister: otobüse binmek. Bu fiille bulunma, ayrılma ve belirtme hâlleri kullanılamaz.", "gA1_03": "Burada bir yerde bulunmaktan söz edildiği için bulunma hâli gerekir; sert ünsüz ş'den sonra ek -te olur: işte.", "gA1_04": "... -DAn sonra yapısı her zaman ayrılma hâli ister. Sert s ünsüzünden sonra ek -ten biçimini alır: dersten sonra.", "gA1_05": "Bu sözcüğüyle belirli hâle gelen nesne belirtme hâli alır: bu filmi. Eksiz biçim ya da başka hâller cümleyi yanlış yapar.", "gA1_06": "Benim zamiri 1. tekil kişi iyelik eki -im ister: evim. Diğer seçenekler senin, onun ve sizin anlamı taşır.", "gA1_07": "Özne biz olduğunda isim cümlesinin yüklemi -yiz ekini alır: öğrenciyiz. Öteki biçimler ben, siz ve o kişilerine aittir.", "gA1_08": "Geçen yaz geçmiş zamanı gösterir, biz öznesi ise -k ekini gerektirir: yaptık. Yapıyoruz biçimi şimdiki zamandır.", "gA1_09": "Ben ve arkadaşım birlikte biz öznesini verir, bu yüzden gelecek zaman gideceğiz olur. Gelecek hafta sözü geçmiş zamanı dışlar.", "gA1_10": "2. tekil kişiye yöneltilen rica yalın fiil köküyle kurulur: kapat. Diğer biçimler şimdiki zaman, geçmiş zaman ve mastardır.", "gA1_11": "Cümlenin ikinci bölümünde ayakta durmak gerektiği söylendiğine göre boş yer yoktur: yok. Değil sözcüğü yer ile bu anlamda kullanılmaz, yoklar biçimi ise yoktur.", "gA1_12": "Türkçede sayıdan sonra gelen isim her zaman tekil kalır: yirmi öğrenci. Burada çokluk eki yanlıştır.", "gA1_13": "Türkçede yarım saati buçuk sözcüğü karşılar ve sayıdan sonra gelir: üç buçuk. Yarım sözcüğü böyle kullanılmaz.", "gA1_14": "İle sözcüğü ünlüden sonra -yla ya da -yle biçiminde yazılır; son ünlü o kalın olduğu için metroyla gerekir.", "gA1_15": "Soru eki ünlü uyumuna uyar: hasta sözcüğünün son ünlüsü a olduğu için mı biçimi ve 2. tekil kişi eki gerekir: mısın.", "vA1_01": "Ekmeğin üzerine sürülen şey reçeldir. Çorba, pilav ve salata ekmeğe sürülmez.", "vA1_02": "Annenin erkek kardeşine Türkçede dayı denir. Amca babanın erkek kardeşi, teyze annenin kız kardeşi, hala ise babanın kız kardeşidir.", "vA1_03": "Okulda ders veren kişiye öğretmen denir. Doktor, şoför ve garson başka yerlerde çalışır.", "vA1_04": "Uçak havalimanına iner: havalimanı. Gar, durak ve liman ise tren, otobüs ve gemiyle ilgilidir.", "vA1_05": "Fiyat sorulurken Türk para birimi olan lira kullanılır. Kilo, metre ve saat ağırlık, uzunluk ve zaman bildirir.", "vA1_06": "Boğaz ağrısı ve ateş hastalık belirtisidir, bu yüzden hasta sözcüğü gerekir. Aç, mutlu ve yorgun bu belirtileri açıklamaz.", "vA1_07": "Kar yağdığında hava soğuktur: soğuk. Sıcak, kuru ve ılık hava karla bağdaşmaz.", "vA1_08": "Türk bayrağı kırmızı beyazdır, bu yüzden kırmızı sözcüğü gerekir. Mavi, yeşil ve sarı bayrakta yoktur.", "vA1_09": "Pazartesiden sonra salı gelir. Diğer günler haftanın başka sıralarında yer alır.", "vA1_10": "Uyumak için yatağa gidilir: yatak. Masa, sandalye ve dolap uyumak için kullanılmaz.", "vA1_11": "Ucuz sözcüğünün karşıtı pahalıdır. Hafif, yeni ve uzun sözcükleri başka özellikleri anlatır.", "vA1_12": "Dişlerle fırçalamak fiili kullanılır. Süpürmek yerle, silmek tozla, taramak ise saçla ilgilidir.", "lA1_01": "Kayıtta açıkça İzmir'de yaşıyorum deniyor, bu yüzden doğru seçenek İzmir'de. Başka şehirlerden söz edilmiyor.", "lA1_02": "Kişi bir bardak çay istiyor, yani çay içmek istiyor. Kahve, süt ve ayran kayıtta geçmiyor.", "lA1_03": "Kayıtta saat üçte deniyor, yani randevu saat üçtedir. Başka bir saat söylenmiyor.", "lA1_04": "Konuşan kişi Antalya'ya gidiyoruz diyor, bu yüzden birinci seçenek doğrudur. Öteki şehirler kayıtta geçmiyor.", "wA1_01": "İşaret sözcüğü bu isimden önce gelir, sonra yönelme hâlindeki tümleç, en sonda ise fiil bulunur.", "wA1_02": "Türkçe cümlede fiil sona konur, her akşam zaman zarfı ise nesneden önce yer alır.", "wA1_03": "Belirli geçmiş zaman -DI ekiyle kurulur, 1. tekil kişi için de -m eklenir: yedim.", "wA1_04": "Oku- kökü ünlüyle bittiği için -yor ekinden önce y kaynaştırma ünsüzü girer: okuyor, 3. tekil kişi kişi eki almaz.", "rA1_01": "Metinde bir bankada çalışıyorum deniyor, yani Emre bankada çalışıyor. Hastanede çalışan eşidir.", "rA1_02": "Selin için bir hastanede hemşire deniyor, yani o hemşiredir. Metinde başka meslek adı geçmiyor.", "rA1_03": "Metinde hafta sonları birlikte parka gidiyoruz yazıyor, bu yüzden birinci seçenek doğrudur. Diğer etkinliklerden söz edilmiyor.", "rA1_04": "Metinde bir kafede garson olarak çalışıyorum deniyor, yani o bir kafede çalışıyor. Markete yalnızca işten sonra uğruyor.", "rA1_05": "Metinde saat sekizde işe başlıyorum deniyor, yani saat sekizde. Başka bir saat verilmiyor.", "rA1_06": "İşten sonra sebze almak için markete gidiyor: İşten sonra markete gidiyorum. Öteki eylemler metinde yok.", "gA2_01": "Geniş zaman düzenli olarak yapılan eylemi anlatır. Ben zamiri için köke -er/-ar eki ve -im kişi eki getirilir: içerim.", "gA2_02": "-(A/I)rdI biçimi, yani geniş zamanın hikâyesi, geçmişte düzenli yapılan eylemi anlatır. Eskiden sözcüğü tam olarak buluşurdum biçimini gerektirir.", "gA2_03": "-(I)yordu biçimi geçmişte belirli bir anda sürmekte olan eylemi gösterir. Burada eve gelindiği sırada anne yemek yapıyordu.", "gA2_04": "Yeterlilik -Abilmek biçimiyle verilir. Ahmet öznesi üçüncü tekil kişiyi gerektirir: yüzebilir.", "gA2_05": "Eylemin yapılamaması yetersizlik biçimi -AmA- ile anlatılır. Ben öznesiyle geçmiş zamanda gidemedim olur.", "gA2_06": "-mIş biçimi, yani öğrenilen geçmiş zaman, konuşan olaya tanık olmadığında ve onu başkalarından duyduğunda kullanılır.", "gA2_07": "önce sözcüğünden önce fiil -mAdAn biçimini alır. -DIktAn biçimi ise yalnızca sonra sözcüğüyle kullanılır.", "gA2_08": "sonra sözcüğünden önce fiil -DIktAn biçimini alır. bitmeden seçeneği yalnızca önce sözcüğüyle kullanılır.", "gA2_09": "Amaç, isim fiil ve için sözcüğüyle kurulan yapıyla anlatılır. Bu yüzden katılmak biçimi gerekir.", "gA2_10": "Ünlüyle biten bir sözcükten sonra -ken ekinden önce kaynaştırma harfi y gelir: öğrenciyken.", "gA2_11": "İki varlık karşılaştırılırken ayrılma hâli ve daha sözcüğü kullanılır. en sözcüğü en üstünlük derecesi kurar ve -dan eki ile kullanılmaz.", "gA2_12": "-sIz eki bir şeyin yokluğunu, -lI eki ise varlığını belirtir. Anlama göre şekersiz uygundur.", "gA2_13": "İstek kipi birinci çoğul kişide -(y)AlIm ekiyle kurulur. hadi sözcüğünden sonra bütün gruba seslenilir.", "gA2_14": "-mAk zorunda olmak yapısı zorunluluğu anlatır. Ben öznesi ve şimdiki zaman zorundayım biçimini gerektirir.", "gA2_15": "Gelecek zaman -(y)AcAk ekiyle kurulur. Ben öznesiyle gideceğim olur.", "vA2_01": "Ağrı kesici - ağrıyı dindiren ilaçtır, baş ağrısı olunca eczaneden alınır.", "vA2_02": "Randevu almak, görüşme için gün ve saat ayırtmak demektir. Hastaneyi ararken tam olarak bu yapılır.", "vA2_03": "Bagaj bandı - havalimanında valizlerin teslim edildiği banttır.", "vA2_04": "Emlakçı - ev bulmaya yardım eden kişidir. Kasap et satan, terzi ise elbise diken kişidir.", "vA2_05": "Özgeçmiş - kişinin eğitim ve iş bilgilerini gösteren belgedir, iş görüşmesine giderken yanına alınır.", "vA2_06": "Koşu bandı spor salonunda bulunur, bu yüzden spor salonu uygundur.", "vA2_07": "Kar yağarken hava soğuk olur. Sıcak ve ılık sözcükleri ise yüksek ve orta sıcaklığı anlatır.", "vA2_08": "Otelde şifresi sorulan şey kablosuz internettir.", "vA2_09": "Sıcak hava balonu - Kapadokya'nın en önemli simgesidir.", "vA2_10": "Üniversitede kurslara ya da derslere kayıt yapılır, bu yüzden ders uygundur.", "vA2_11": "Fiş - ödemeden sonra verilen kasa belgesidir. Reçete ise doktorun yazdığı belgedir.", "vA2_12": "Şehirde trafik sıkışık olduğunda metro kullanışlıdır. Diğer seçenekler şehir içi ulaşıma uygun değildir.", "lA2_01": "Kayıtta doğrudan perşembe günü söyleniyor, diğer günlerden söz edilmiyor.", "lA2_02": "Anonsta yarım saat gecikmeli deniyor, yani gecikme yarım saattir.", "lA2_03": "Hava durumunda akşam saatlerinde hafif yağmur deniyor, yani akşam az yağmur yağacak.", "lA2_04": "Kayıtta gün ve saat söyleniyor: cumartesi sabahı saat altıda.", "wA2_01": "Zaman zarfı cümlenin başında, -mAk zorunda olmak fiil yapısı ise cümlenin sonunda yer alır.", "wA2_02": "-DIktAn sonra yapısı zaman anlamlı yan cümleyi başta kurar, gelecek zamandaki yüklem ise sonda bulunur.", "wA2_03": "Yeterlilik -Abilmek biçimiyle anlatılır. Ben zamiri için yüzebilirim olur.", "wA2_04": "istemek fiilinden önce -mAk ekli isim fiil gelir. Bu yüzden görmek ya da gezmek yazılır.", "rA2_01": "Metnin tamamı Kapadokya gezisini anlatıyor: yol, otel, turlar ve hediyeler.", "rA2_02": "Metinde Ankara'dan gece otobüsüne bindik deniyor, yani gece otobüsüyle gitmişler.", "rA2_03": "Metinde doğrudan ikinci gün ise sıcak hava balonuna bindik deniyor.", "rA2_04": "Metin Deniz'in İzmir'deki hayatını anlatıyor: okul, kiralık ev ve iş planları.", "rA2_05": "Metinde okula yürüyerek gidiyorum yazıyor, yol on dakika sürüyor.", "rA2_06": "Son cümlede hafta sonları yeni bir iş aramak istiyorum deniyor.", "gB1_01": "tavsiye etmek fiili, iyelik eki ve belirtme hâli almış bir isim fiil ister: yürü-me-m-i. Yalın -mAk biçimi burada kullanılamaz.", "gB1_02": "Gereklilik kipi -mAlI ekiyle kurulur: bulundur-malı-sınız. Geçmiş zaman biçimleri zorunluluk anlamı vermez.", "gB1_03": "Sebep bildirme -DIğI için yapısıyla sağlanır. rağmen'li seçenek tam ters anlam verir, diğer biçimler ise dil bilgisi bakımından uymaz.", "gB1_04": "rağmen sözcüğünden önce isim fiil yönelme hâlinde gelir: paylaş-ma-m-a rağmen. -DIğI biçimi yalnızca hâlde ile kullanılır.", "gB1_05": "hâlde sözcüğüyle kişi eki almış -DIğI biçimi kullanılır: gel-diğ-imiz hâlde. Yönelme hâlindeki -mAsInA yalnızca rağmen ile gider.", "gB1_06": "-mAktAnsA yapısı bir işi başka bir işe yeğlemeyi bildirir ve tercih etmek fiili bu yapıyı gerektirir. Diğer biçimler anlamsız bir cümle oluşturur.", "gB1_07": "zaman sözcüğünden önce kişi eki almış -DIğI biçimi gelir: bitir-diğ-im zaman. Gelecek anlamını cümlenin asıl yüklemi verir.", "gB1_08": "Şimdiki ve gelecek zamana ait gerçek şart, -(A/I)r + -sA kalıbıyla kurulur: eder-sen. Diğer biçimler şart kipi yan cümlesinde yer alamaz.", "gB1_09": "-(y)ArAk zarf fiili işin nasıl yapıldığını gösterir: yani onu tam olarak ne biçimde yaptığımı. Diğer seçenekler nasıl sorusuna cevap vermez.", "gB1_10": "-(y)ken eki, ikinci olayın birincisi sürerken gerçekleştiğini gösterir. İki bölümün öznesi farklı olduğu için -(y)ArAk kullanılamaz.", "gB1_11": "-(y)Ip zarf fiili aynı öznenin art arda yaptığı iki işi birleştirir: önce indirdi, sonra açtı. Diğer biçimler anlamı değiştirir ya da bozar.", "gB1_12": "-(y)AcAktI biçimi geçmişte gerçekleşmemiş bir niyeti anlatır: yapacaktı ama yapmadı. Diğer zamanlar cümlenin ikinci bölümüyle çelişir.", "gB1_13": "-mIştI biçimi, yani miş'li geçmişin hikâyesi, başka bir geçmiş andan daha önce bitmiş bir işi gösterir. çoktan sözcüğü doğrudan bu anlamı işaret eder.", "gB1_14": "keşke'den sonra geçmişte gerçekleşmemiş bir durum -sAydI biçimiyle anlatılır: kabul et-sey-dim. keşke'den sonra haber kipleri burada kullanılamaz.", "gB1_15": "-mAdAn biçimi, bir iş yapılmadan başka bir işin gerçekleştiğini bildirir: okumadan. -(y)ArAk seçeneği tam ters anlam verirdi.", "vB1_01": "etekleri zil çalmak deyimi büyük bir sevinci, coşkuyu anlatır. Korkuyla ya da yorgunlukla ilgisi yoktur.", "vB1_02": "burnu havada olmak, kibirli ve büyüklenen bir kişiyi tanımlar. Bu, sağlıkla ya da çalışkanlıkla değil, karakterle ilgili bir değerlendirmedir.", "vB1_03": "ağzı kulaklarına varmak, sevinçten kocaman gülümsemek demektir. Deyim, mutlu bir insanın yüz ifadesini anlatır.", "vB1_04": "kafa patlatmak, bir şeyin üzerinde uzun uzun ve yoğun biçimde düşünmek demektir. Baş ağrısıyla ya da öfkeyle ilgisi yoktur.", "vB1_05": "özgeçmiş, iş görüşmesine götürülen belgedir. Diğer sözcükler kiralamayla, poliklinikle ve yolculukla ilgilidir.", "vB1_06": "Bankamatiğe şifre, yani gizli kod girilir. İmza kâğıt üzerine atılır, bankamatiğe değil.", "vB1_07": "Ev tutarken kira sözleşmesi imzalanır. Diğer belgelerin kiralamayla ilgisi yoktur.", "vB1_08": "Türkçede doktor ilacı yazmak fiiliyle verir: ilaç yazmak. Diğer fiiller bu bağlamda anlamsızdır.", "vB1_09": "ısınma hareketleri, antrenman ya da maç öncesinde yapılan hareketlerdir. Diğer sözcükler alışverişle, tamiratla ve dilekçeyle ilgilidir.", "vB1_10": "oda ayırtmak, otelde oda rezervasyonu yaptırmak demektir. Diğer fiiller bambaşka işleri anlatır.", "vB1_11": "Video izlenir, bu yüzden izlemek fiili gerekir. Diğer seçenekler video sözcüğüyle birlikte kullanılmaz.", "vB1_12": "sınava girmek, sınav olmak anlamında kalıplaşmış bir söz öbeğidir. Diğer sözcükler kiralamayla, faturayla ve tarifeyle ilgilidir.", "lB1_01": "Anonsta uçuşun iki saat geciktiği açıkça söyleniyor. Yirmi dakika, bilgi ekranına bakılması gereken süredir.", "lB1_02": "Mesajda randevunun cuma günü saat on dörde alındığı söyleniyor. Perşembe, randevunun eski tarihidir.", "lB1_03": "Duyuruda kütüphanenin teknik çalışma nedeniyle hafta sonu kapalı olduğu söyleniyor. Pazartesi, kitapların teslim edilmesi için son gündür.", "lB1_04": "Anonsta hızlı kasaların ikinci katta olduğu belirtiliyor. Diğer katlardan söz edilmiyor.", "wB1_01": "-DIğI için ile kurulan sebep yan cümlesi ana cümleden önce gelir, yüklem kaldım ise cümlenin sonundadır.", "wB1_02": "rağmen'li öbek cümlenin başında yer alır, yüklem yapamadım ise sona konur.", "wB1_03": "Sebep, yağ-dığ-ı için biçiminde kurulur: gövde artı -DIğI artı için. Buradaki kişi eki üçüncü tekil kişiye aittir.", "wB1_04": "-(y)Ip zarf fiili aynı öznenin art arda yaptığı iki işi birleştirir: gir-ip. Zaman ve kişi, son yüklemden alınır.", "rB1_01": "Metinde açıkça belirtiliyor: aylık kira on iki bin lira. Beş yüz lira, aylık aidat tutarıdır.", "rB1_02": "İlanda hafta içi ondan on sekize kadar aranabileceği söyleniyor. Yalnızca öğleden sonra ifadesi cumartesi günleri için geçerlidir.", "rB1_03": "Metnin sonunda elektrik, su ve internet faturalarını kiracının ödediği söyleniyor. Diğer ifadeler metinle çelişiyor.", "rB1_04": "Mektupta şöyle deniyor: sabahları bisikletle gidiyorum. Metinde başka bir ulaşım aracından söz edilmiyor.", "rB1_05": "Selin son anda vazgeçtiğini ve şimdi kararından memnun olduğunu yazıyor: bu kararıma çok seviniyorum. Demek ki pişmanlık yok.", "rB1_06": "Metinde yeni işe başlamasına yalnızca üç gün kaldığı açıklanıyor. Bu yüzden kutular açılmadan kalmış.", "gB2_01": "Özne (kararlar) eylemi yapmaz, eylemden etkilenir; bu yüzden edilgen çatı gerekir: duyur-ul-du.", "gB2_02": "Eylemi özne değil, onun yaptırmasıyla başka biri gerçekleştirir; bu yüzden ettirgen çatı gerekir: giy-dir-di.", "gB2_03": "Eylem karşılıklıdır ve nesne almaz; bu yüzden -Iş ekiyle işteş çatı kullanılır: öp-üş-tüler.", "gB2_04": "Nitelenen sözcük (öğrenciler) eylemin öznesi olduğu için -an sıfat fiili alınır.", "gB2_05": "Eylemin öznesi (ben) nitelenen sözcükle aynı olmadığı için iyelik ekli -DIk sıfat fiili gerekir.", "gB2_06": "Gelecekteki bir olaydan ve edilgen bir anlamdan söz edildiği için edilgen düzenlen- gövdesine -AcAk sıfat fiili getirilir.", "gB2_07": "Dolaylı anlatımda yan cümle -AcAğI + belirtme hâli ile kurulur, çünkü belirtmek fiili belirtme hâlinde nesne ister.", "gB2_08": "kaç sözcüğüyle kurulan dolaylı soru -AcAğI + belirtme hâli biçimiyle aktarılır, bu durumda mI soru eki kullanılmaz.", "gB2_09": "Dolaylı anlatımda ad cümlesi -DIğI biçimine dönüşür ve söylemek fiilinden önce belirtme hâline girer.", "gB2_10": "-DIkçA biçimi orantı bildirir: biri arttıkça öteki de artar. Burada çatı ekli ve olumsuz biçimler kullanılamaz.", "gB2_11": "Edilgen bulun- gövdesi ile eylemin zaman sınırını gösteren -(y)IncAyA kadar biçimi gerekir.", "gB2_12": "zaman sözcüğünden önce kişi iyelik ekli -AcAk sıfat fiili gelir: imzalayacağınız zaman.", "gB2_13": "endişelenmek fiili çıkma hâli istediği için yan cümle -AcAğI + -DAn biçiminde kurulur.", "gB2_14": "Temel cümleyle yan cümlenin öznesi farklı olduğunda belirtme hâlinde -mAsI biçimi kullanılır: katılmasını bekliyor.", "gB2_15": "Belgeler kendiliğinden teslim edilmez, teslim edilirler; bu yüzden gerekiyor sözcüğünden önce edilgen çatı ve -mAsI isim fiili gerekir.", "vB2_01": "hevesi kursağında kalmak deyimi beklenen sevincin gerçekleşmemesi anlamına gelir. Öteki seçenekler sevinci, cömertliği ve hırsı anlatır.", "vB2_02": "Buzları eritmek gerginliği gidermek ve iletişimi kolaylaştırmak demektir. Öteki deyimler patavatsızlığı, bahane üretmeyi ve pes etmeyi anlatır.", "vB2_03": "İki yakası bir araya gelmemek geçimini sağlayamamak demektir. Öteki deyimler konuşmayla ve cesaretle ilgilidir.", "vB2_04": "Küplere binmek çok öfkelenmek demektir, öteki üç anlatım ise sevinci ve mutluluktan doğan heyecanı betimler.", "vB2_05": "Orta yolu bulmak uzlaşmaya varmak demektir. Öteki deyimler denetimi yitirmeyi, gaf yapmayı ve uzak durmayı anlatır.", "vB2_06": "Kalıplaşmış satın alma gücü sözü alım gücü anlamına gelir; bu terim öteki adlarla birlikte kullanılmaz.", "vB2_07": "Tehdit etmek tehlike oluşturmak demektir ve anlamca uygundur; öteki fiiller varsaymak, iletmek ve yeğlemek anlamına gelir.", "vB2_08": "program gibi soyut bir nesneyle düzenlemek fiili kullanılır; onarmak ve tamir etmek eşyalar için geçerlidir, derlemek ise malzeme toplamak demektir.", "vB2_09": "Çözüm üretmek, çözüm bulmak anlamında kalıplaşmış bir sözdür; öteki fiiller bu sözcükle kullanılmaz.", "vB2_10": "Tıp bağlamında tanı koymak anlamındaki teşhis etmek terimi kullanılır; öteki fiiller varsaymak, betimlemek ve sunmak anlamına gelir.", "vB2_11": "Toplu taşıma kamu ulaşımı demektir ve kalıplaşmış bir terimdir; taşınma ise ev değiştirmek anlamına gelir.", "vB2_12": "İş yazışmalarında tarafınıza iletilecektir kalıbı kullanılır; yollanılacaktır biçimi dil bilgisi bakımından yanlıştır.", "lB2_01": "Haberde açıkça yüzde yirmi iki denmektedir, bu yüzden öteki sayılar kayda uymaz.", "lB2_02": "Duyuruda iade süresinin kendiliğinden iki hafta uzatıldığı bildirilmektedir.", "lB2_03": "Kayıtta uyku kalitesi, doğrudan uykudan iki saat önce ekran kullanımının azaltılmasıyla ilişkilendirilir.", "lB2_04": "Arayan kişi fiyatı uygun bulduğunu söyler ve teslim süresinin on beş günden on güne indirilmesini ister.", "wB2_01": "alınan sıfat fiili kararlar sözcüğünü niteler, -mAsI gerekiyor yapısı ise cümleyi tamamlar.", "wB2_02": "-DIkçA ile kurulan yan cümle başta yer alır, pekiştirici daha da sözü ise yüklemden önce gelir.", "wB2_03": "tarafından ile verilen bir eyleyen bulunduğunda yüklem edilgen çatıya girer: hazırla-n-dı.", "wB2_04": "Yollar kendi kendini onarmaz, bu yüzden isim fiille birlikte edilgen çatı gerekir: onar-ıl-ması gerekiyor.", "rB2_01": "Son paragrafta yazar, uzaktan çalışmanın ofisin yerini almadığını, onu tamamladığını açıkça yazar ve karma modeli onaylar.", "rB2_02": "İkinci paragrafta yalnızlık ve çalışma saatlerinin sınırlarının belirsizleşmesinden doğan tükenmişlik anılır.", "rB2_03": "Bu anlatım, üstünlükler sıralandıktan sonra konunun karşıt ve olumsuz yanını ortaya koyar.", "rB2_04": "Mektubun yazarı teslimat gecikmelerini saptar ve sözleşmede belirtilen sürelere uyulmasını ister.", "rB2_05": "İkinci paragrafta gecikmelerin üretim planını aksattığı söylenir.", "rB2_06": "aksi hâlde ek tedbirler almak durumunda kalacağımızı sözü gerçekleşmiş bir olguyu değil, olası önlemlere ilişkin bir uyarıyı anlatır.", "gC1_01": "Kaldı ki bağlacı, söylenmiş olanı destekleyen ek ve pekiştirici bir gerekçe getirir. Diğer seçenekler karşılaştırma, sebep veya şart bildirir ve burada uygun düşmez.", "gC1_02": "Ne var ki, beklenen sonuca karşıt bir yargı getirir. Diğer seçenekler karşıtlık değil sonuç bildirir.", "gC1_03": "Dolayısıyla, önceki yargıdan çıkan mantıksal sonucu belirtir. Diğer üç seçenek anlama ters düşen bir ödün ya da karşıtlık bildirir.", "gC1_04": "Oysaki, ileri sürülen duruma gerçek durumu karşıt olarak koyar. Üstelik ve ayrıca yalnızca bilgi ekler, dolayısıyla ise sonuç bildirir.", "gC1_05": "-mIşçAsInA biçimi sanki incelemiş gibi anlamını verir ve ismi benzetme yoluyla niteler. Öteki biçimler bu konumda benzetme öbeği kurmaz.", "gC1_06": "-mAksIzIn, başka bir eylem gerçekleştirilmeden yapılan bir işi bildirir; yani -mAdAn biçiminin kitabi karşılığıdır. Vererek, vermekle ve verince ise karşıt ya da başka bir anlam verir.", "gC1_07": "-mAklA birlikte yapısı kitabi dilde ödün bildirir: içermekle birlikte. Öteki seçenekler ölçü, olumsuzluk veya eylemin gerçekleşmemesini bildirir.", "gC1_08": "Duyduğuma göre öbeğinden sonra, geleceğe ilişkin başkasının sözünü aktaran rivayet biçimi -AcAkmIş kullanılır. Diğer biçimler eylemi geçmişe bağlar ve rivayet bildirmez.", "gC1_09": "-Iyormuş biçimi, geçmişte süren bir eylemi başkalarından duyulduğu biçimiyle aktarır. Öteki biçimler ya birinci ağızdan kesin bilgi verir ya da şart bildirir.", "gC1_10": "İyelik eki ve belirtme durumu almış -DIğI adlaştırması, yan cümleyi ortaya koymak fiilinin nesnesi durumuna getirir. Mastar ve zarf fiil bu işlevi yerine getiremez.", "gC1_11": "Resmî dilde yüklem edilgen olduğunda zarf fiil de edilgen çatıya girer: esas alınarak. Alarak biçimi belirli bir özne gerektirir ve uyumu bozar.", "gC1_12": "-AcAk kadar yapısı, bir niteliğin derecesini olması olası bir eylem üzerinden belirtir. -DIğI kadar biçimi gerçekleşmiş bir eyleme gönderme yapardı ve burada anlamca olanaksızdır.", "gC1_13": "-mIyor değil çift olumsuzluğu yumuşatılmış bir olumluluk verir: aslında tahmin ediyorduk. Yalın olumsuz etmiyorduk biçimi cümlenin ikinci bölümüyle çelişir.", "gC1_14": "-mAk şöyle dursun öbeği bırakın onu anlamını taşır ve daha azının bile yapılmadığını vurgular. Öteki yapılar ödün, eylemin gerçekleşmemesi veya ölçü bildirir.", "gC1_15": "Öznesi ilgi durumunda bulunan cümlede gerekmektedir yapısı, iyelik ekli bir eylem adı ister: tamamlaması. Edilgen tamamlanması biçimi bu özneyle uyuşmaz.", "vC1_01": "İki arada bir derede kalmak deyimi, iki ateş arasında, çıkışsız bir durumda kalmak anlamına gelir. Öteki sözler kalmak fiiliyle bu anlamda birleşmez.", "vC1_02": "Rafa kaldırmak deyimi bir işi süresiz olarak ertelemek demektir. Gündem, masa ve orta sözcükleri başka fiillerle kullanılır ve karşıt bir anlam verir.", "vC1_03": "Ağaç yaşken eğilir atasözü, eğitimin küçük yaşta verilmesi gerektiğini anlatır. Öteki fiiller atasözünün kalıplaşmış biçimini bozar.", "vC1_04": "Görünen köy kılavuz istemez atasözünün kalıplaşmış biçimi, sözcüğün ya da durum ekinin değiştirilmesine izin vermez. Kılavuzu seçeneği bu yapıda dil bilgisi bakımından yanlıştır.", "vC1_05": "Teyit etmek, anlamın gerektirdiği gibi doğrulamak demektir. Telafi, tahrip ve tenkit ise gidermek, yıkmak ve eleştirmek anlamlarını taşır.", "vC1_06": "Gerekçesiyle, kararın hukuki dayanağını gösterir. Öteki ilgeçler karşılık, yön veya amaç bildirir.", "vC1_07": "Gereğince ilgeci uyarınca, doğrultusunda anlamına gelir ve resmî dil kalıplarında sık kullanılır. Boyunca, karşısında ve üzerine ise zaman, karşıtlık veya konu bildirir.", "vC1_08": "Dış ticaretteki açık dış ticaret açığı söz öbeğiyle karşılanır ve derinleşen de budur. Fazla sözcüğü ticaret fazlası anlamına gelir ve cümlenin mantığına ters düşer.", "vC1_09": "İğneleyici sözcüğü dokundurucu, taşlayıcı anlamındadır ve neredeyse alay ederek açıklamasıyla uyuşur. Öteki niteleyiciler bu açıklamayla çelişir.", "vC1_10": "Gözetmek, dikkate almak, özenle göz önünde bulundurmak demektir; bunu cümlenin ikinci bölümü de doğrular. Diğer üç seçenek ise umursamamayı bildirir ve bağlamla çelişir.", "vC1_11": "Doğrulanmak, bilginin denetlenip güvenilirliğinin onaylanması demektir; cümlenin ikinci bölümü de bunu anlatır. Öteki seçenekler başka yazı işleri uygulamalarını betimler.", "vC1_12": "Sürdürülebilir, uzun süre korunabilen, kalıcılığını yitirmeyen demektir; bu da iklim politikasının amacına uygundur. Geçici ve kırılgan süreksizlik ve incinebilirlik bildirir, kayıtsız ise aldırışsız anlamındadır.", "lC1_01": "Kayıtta açıkça şöyle deniyor: özel sektör yatırımları canlanmadıkça bu ivme kalıcı olmayacak. Metinde başka bir önlem şart olarak anılmıyor.", "lC1_02": "Örnekler yirmi dört gölden alınmış, ancak mikroplastiğe yirmi bir gölde rastlanmıştır. Yirmi dört sayısı alınan örneklerin toplamını gösterir.", "lC1_03": "Duyuruda, bu yolcuların işlemleri baştan yaptırmasının gerekmediği belirtiliyor. Metinde başka bir işlem istenmiyor.", "lC1_04": "Uzman, yeni otoparkların kentteki araç sayısını azaltmadığını, tersine artırdığını ileri sürüyor. Trafiğin azaldığını söyleyen seçenek şöyle dursun öbeğiyle doğrudan çürütülüyor.", "wC1_01": "Resmî dilde özne ilgi durumunda bulunur, yüklem ise iyelik ekli eylem adı ile gerekmektedir birleşiminden kurulur. Zaman ve yer tümleçleri yüklemden önce yer alır.", "wC1_02": "-mAklA birlikte ödün öbeği, kendi tümlecinden sonra ve cümlenin temel bölümünden önce gelir. Yüklem yine sonda kalır.", "wC1_03": "Yan cümledeki gelecek zamanlı eylem, üçüncü kişi iyelik eki ve belirtme durumu almış -AcAğI biçimiyle kurulur. Öngörmek fiili belirtme durumunda nesne ister.", "wC1_04": "-mAksIzIn eki fiil köküne gelir ve eylemi gerçekleştirmeden anlamını verir. Bu, -mAdAn biçiminin kitabi eş değeridir.", "rC1_01": "Metinde, yolculuk süresindeki kısalmanın yalnızca geçici olduğu ve birkaç yıl içinde trafik yoğunluğunun geri döndüğü söyleniyor. Demek ki etki kalıcı değildir.", "rC1_02": "Yazar, erişilebilirlik iyileştirilmedikçe kısıtlamaların en ağır biçimde dar gelirli haneleri vurduğunu vurguluyor. Öteki yargılar metinde yer almıyor.", "rC1_03": "Son paragrafta, kaynakların toplu taşımanın sefer sıklığını artırmaya aktarılmasından açıkça söz ediliyor. Başka harcama alanlarına değinilmiyor.", "rC1_04": "Çelişki, kamu kaynaklarıyla finanse edilen araştırmaların sonradan aynı kurumlarca yüksek bedelle geri satın alınmasındadır. Öteki seçenekler metinde çelişki olarak anılmıyor.", "rC1_05": "Yazar erişimin demokratikleştiğini kabul ediyor, ancak ardından yazardan alınan ücretlerin artmasına ve hakemliğin zayıflamasına dikkat çekiyor. Bu, tümüyle olumsuz değil dengeli bir tutumdur.", "rC1_06": "Metinde, yayın ücretlerindeki artışın bütçesi kısıtlı araştırmacıları dezavantajlı duruma düşürdüğü açıkça belirtiliyor. Bu bağlamda başka bir kesimden söz edilmiyor."};
-var DICT_ADD={"Пауза": "Duraklat", "Продолжить": "Devam et", "Выйти": "Çık", "Экзамен на паузе": "Sınav duraklatıldı", "Таймер остановлен, вопрос скрыт, чтобы пауза не давала преимущества.": "Süre durdu, duraklama avantaj sağlamasın diye soru gizlendi.", "Выйти из экзамена": "Sınavdan çık", "Что сделать с текущей попыткой?": "Bu deneme ne olsun?", "Сохранить и выйти": "Kaydet ve çık", "Продолжите с этого же вопроса, время тоже сохранится.": "Aynı sorudan devam edersiniz, süre de korunur.", "Завершить и посмотреть результат": "Bitir ve sonucu gör", "Посчитаем только те вопросы, на которые вы ответили.": "Yalnızca cevapladığınız sorular sayılır.", "Удалить попытку": "Denemeyi sil", "Ответы не сохранятся.": "Cevaplar kaydedilmez.", "Отмена": "Vazgeç", "Незаконченный экзамен": "Yarım kalmış sınav", "Продолжить экзамен": "Sınava devam et", "Удалить": "Sil", "осталось ": "kalan ", "паузы: ": "duraklama sayısı: ", "время на паузе: ": "duraklamada geçen süre: ", "Профиль · Ваша цель": "Profil · Hedefiniz", "Расскажите о себе": "Kendinizden bahsedin", "Это нужно, чтобы результат показывал не просто уровень, а разрыв между тем, где вы сейчас, и тем, куда хотите прийти.": "Böylece sonuç yalnızca seviyenizi değil, bulunduğunuz yer ile hedefiniz arasındaki mesafeyi de gösterir.", "Как вас зовут": "Adınız", "Какой уровень хотите взять": "Hangi seviyeye ulaşmak istiyorsunuz", "Зачем вам турецкий": "Türkçe size ne için gerekli", "За какой срок хотите дойти": "Ne kadar sürede ulaşmak istiyorsunuz", "Сколько времени готовы уделять в неделю": "Haftada ne kadar zaman ayırabilirsiniz", "Как давно учите турецкий": "Ne zamandan beri Türkçe öğreniyorsunuz", "Сохранить и продолжить": "Kaydet ve devam et", "Пропустить": "Atla", "Учёба в университете": "Üniversite eğitimi", "Работа": "İş", "Жизнь в Турции": "Türkiye'de yaşam", "Экзамен TÖMER": "TÖMER sınavı", "Поездки": "Seyahat", "Для себя": "Kendim için", "Для учёбы налегайте на академическое чтение и конспект: длинные тексты, термины, письменные ответы.": "Eğitim için akademik okumaya ve not tutmaya ağırlık verin: uzun metinler, terimler, yazılı cevaplar.", "Для работы важнее живой диалог и деловая переписка: телефон, письма, короткие встречи.": "İş için canlı diyalog ve iş yazışması daha önemli: telefon, e-posta, kısa toplantılar.", "Для жизни нужнее бытовые ситуации и документы: банк, поликлиника, госорганы, аренда.": "Yaşam için günlük durumlar ve evrak işleri gerekir: banka, hastane, resmî kurumlar, kira.", "Для экзамена держите формат: полные секции, таймер, письмо по образцу.": "Sınav için formata sadık kalın: tam bölümler, süre, örneğe uygun yazma.", "Для поездок хватит бытовой лексики и уверенного слуха: транспорт, отели, кафе.": "Seyahat için günlük kelimeler ve iyi bir dinleme yeter: ulaşım, otel, kafe.", "Для себя идите через интерес: сериалы, музыка и книги под ваш уровень.": "Kendiniz için ilgi üzerinden gidin: seviyenize uygun diziler, müzik ve kitaplar.", "3 месяца": "3 ay", "6 месяцев": "6 ay", "год": "bir yıl", "без срока": "süre yok", "1 - 2 часа": "1 - 2 saat", "3 - 5 часов": "3 - 5 saat", "6 - 10 часов": "6 - 10 saat", "больше 10 часов": "10 saatten fazla", "ещё не начинал": "henüz başlamadım", "до 3 месяцев": "3 aya kadar", "до года": "bir yıla kadar", "больше года": "bir yıldan fazla", "Профиль не заполнен": "Profil boş", "Укажите цель, и результат покажет разрыв до неё, а не только уровень.": "Hedefinizi belirtin, sonuç yalnızca seviyeyi değil hedefe kalan mesafeyi de gösterir.", "Заполнить": "Doldur", "Ваша цель": "Hedefiniz", "Изменить": "Değiştir", "срок ": "süre ", " мес, ": " ay, ", " ч в неделю": " saat / hafta", "Hedef · Ваша цель": "Hedef", "сейчас": "şimdi", "цель": "hedef", "Цель достигнута: вы уже на этом уровне. Имеет смысл поставить следующую ступень и держать язык в форме.": "Hedefe ulaşıldı: bu seviyedesiniz. Bir üst basamağı hedeflemek ve dili formda tutmak mantıklı.", "До цели примерно ": "Hedefe yaklaşık ", " учебных часов. При ": " ders saati kaldı. Haftada ", " часах в неделю это около ": " saat ile bu yaklaşık ", " недель, то есть примерно ": " hafta, yani yaklaşık ", " месяцев.": " ay eder.", "Срок вы не ставили, так что это просто ориентир по темпу.": "Süre belirtmediniz, bu yüzden bu yalnızca tempo hakkında fikir verir.", "В ваш срок ": "Belirlediğiniz ", " мес это укладывается, темп можно не менять.": " aylık süreye sığıyor, tempoyu değiştirmeniz gerekmez.", " мес это не укладывается: чтобы успеть, нужно около ": " aylık süreye sığmıyor: yetişmek için haftada yaklaşık ", " часов в неделю.": " saat gerekir.", "Часы это ориентир по программе уровней, а не обещание: скорость сильно зависит от того, сколько вы говорите и читаете вне занятий.": "Saatler seviye programına göre bir tahmindir, garanti değil: hız, ders dışında ne kadar konuşup okuduğunuza bağlıdır.", "Изменить цель": "Hedefi değiştir", "осталось примерно ": "yaklaşık ", " часов": " saat kaldı", "Цель: ": "Hedef: ", "цель достигнута": "hedefe ulaşıldı", "до цели примерно ": "hedefe yaklaşık ", "Сохранение картинки здесь недоступно, но её можно сохранить долгим нажатием.": "Görseli burada indirmek mümkün değil, uzun basarak kaydedebilirsiniz.", "турецкие буквы": "Türkçe harfler", "Seviye sınavı sonucu · Вердикт по уровню": "Seviye sınavı sonucu", "Уровень ": "Seviye ", " сдан": " geçildi", " не сдан": " geçilemedi", "Верных ответов ": "Doğru cevap oranı yüzde ", " процентов, порог 70 процентов.": ", geçme sınırı yüzde 70.", "Уровень взят. Можно пробовать следующий: ": "Seviye geçildi. Sıradakini deneyebilirsiniz: ", "держите форму на C1": "C1 formunu koruyun", "Чтобы взять этот уровень, нужно 70 процентов и выше. Сейчас имеет смысл вернуться к уровню ": "Bu seviyeyi geçmek için yüzde 70 ve üzeri gerekir. Şimdilik şu seviyeye dönmek mantıklı: ", " и закрыть темы из списка ниже.": " ve aşağıdaki konuları kapatmak.", "Это тест на один уровень, поэтому результат не поднимается выше него.": "Bu tek bir seviyeye yönelik bir testtir, bu yüzden sonuç o seviyenin üstüne çıkmaz.", "режимов": "mod", "заданий в банке": "soru havuzunda", "Ders materyalleri · Учебные материалы": "Ders materyalleri", "Материалы": "Materyaller", "Учебники, по которым построен экзамен": "Sınavın dayandığı ders kitapları", "Темы заданий расставлены по этим наборам. После экзамена разбор ошибок подсказывает, какой юнит и какие страницы открыть.": "Soruların konuları bu setlere göre sıralanmıştır. Sınavdan sonra hata analizi hangi üniteyi ve hangi sayfaları açmanız gerektiğini söyler.", "юнитов": "ünite", "s. ": "s. ", "Тренировать этот юнит": "Bu üniteyi çalış", "Честно про содержание": "İçerik hakkında dürüstçe", "Задания в тесте написаны специально для него по темам и лексике этих юнитов. Упражнения из самих учебников не копируются: это чужой защищённый материал, и распространять его через сайт нельзя. Ссылки на юниты и страницы даны, чтобы вы открывали свою книгу.": "Testteki sorular bu ünitelerin konu ve kelimelerine göre özel olarak yazılmıştır. Ders kitaplarının alıştırmaları kopyalanmaz: onlar telif hakkıyla korunan içeriktir ve site üzerinden dağıtılamaz. Ünite ve sayfa bilgileri kendi kitabınızı açmanız için verilmiştir.", "Ünite ": "Ünite ", "Тренировка юнита": "Ünite çalışması", "Kitaptan çalışma · Что открыть в учебнике": "Kitaptan çalışma", "Сначала прочитайте правило в учебнике, потом сделайте упражнения этого юнита в рабочей тетради, и вернитесь к тренажёру по этой теме.": "Önce kuralı ders kitabından okuyun, sonra çalışma kitabında o ünitenin alıştırmalarını yapın, ardından bu konuda antrenmana dönün.", "Все материалы": "Tüm materyaller", "Все уровни": "Tüm seviyeler", "заданий": "soru", "Для этого уровня учебники пока не добавлены.": "Bu seviye için henüz ders kitabı eklenmedi."};
+var DICT_ADD={"Пауза": "Duraklat", "Продолжить": "Devam et", "Выйти": "Çık", "Экзамен на паузе": "Sınav duraklatıldı", "Таймер остановлен, вопрос скрыт, чтобы пауза не давала преимущества.": "Süre durdu, duraklama avantaj sağlamasın diye soru gizlendi.", "Выйти из экзамена": "Sınavdan çık", "Что сделать с текущей попыткой?": "Bu deneme ne olsun?", "Сохранить и выйти": "Kaydet ve çık", "Продолжите с этого же вопроса, время тоже сохранится.": "Aynı sorudan devam edersiniz, süre de korunur.", "Завершить и посмотреть результат": "Bitir ve sonucu gör", "Посчитаем только те вопросы, на которые вы ответили.": "Yalnızca cevapladığınız sorular sayılır.", "Удалить попытку": "Denemeyi sil", "Ответы не сохранятся.": "Cevaplar kaydedilmez.", "Отмена": "Vazgeç", "Незаконченный экзамен": "Yarım kalmış sınav", "Продолжить экзамен": "Sınava devam et", "Удалить": "Sil", "осталось ": "kalan ", "паузы: ": "duraklama sayısı: ", "время на паузе: ": "duraklamada geçen süre: ", "Профиль · Ваша цель": "Profil · Hedefiniz", "Расскажите о себе": "Kendinizden bahsedin", "Это нужно, чтобы результат показывал не просто уровень, а разрыв между тем, где вы сейчас, и тем, куда хотите прийти.": "Böylece sonuç yalnızca seviyenizi değil, bulunduğunuz yer ile hedefiniz arasındaki mesafeyi de gösterir.", "Как вас зовут": "Adınız", "Какой уровень хотите взять": "Hangi seviyeye ulaşmak istiyorsunuz", "Зачем вам турецкий": "Türkçe size ne için gerekli", "За какой срок хотите дойти": "Ne kadar sürede ulaşmak istiyorsunuz", "Сколько времени готовы уделять в неделю": "Haftada ne kadar zaman ayırabilirsiniz", "Как давно учите турецкий": "Ne zamandan beri Türkçe öğreniyorsunuz", "Сохранить и продолжить": "Kaydet ve devam et", "Пропустить": "Atla", "Учёба в университете": "Üniversite eğitimi", "Работа": "İş", "Жизнь в Турции": "Türkiye'de yaşam", "Экзамен TÖMER": "TÖMER sınavı", "Поездки": "Seyahat", "Для себя": "Kendim için", "Для учёбы налегайте на академическое чтение и конспект: длинные тексты, термины, письменные ответы.": "Eğitim için akademik okumaya ve not tutmaya ağırlık verin: uzun metinler, terimler, yazılı cevaplar.", "Для работы важнее живой диалог и деловая переписка: телефон, письма, короткие встречи.": "İş için canlı diyalog ve iş yazışması daha önemli: telefon, e-posta, kısa toplantılar.", "Для жизни нужнее бытовые ситуации и документы: банк, поликлиника, госорганы, аренда.": "Yaşam için günlük durumlar ve evrak işleri gerekir: banka, hastane, resmî kurumlar, kira.", "Для экзамена держите формат: полные секции, таймер, письмо по образцу.": "Sınav için formata sadık kalın: tam bölümler, süre, örneğe uygun yazma.", "Для поездок хватит бытовой лексики и уверенного слуха: транспорт, отели, кафе.": "Seyahat için günlük kelimeler ve iyi bir dinleme yeter: ulaşım, otel, kafe.", "Для себя идите через интерес: сериалы, музыка и книги под ваш уровень.": "Kendiniz için ilgi üzerinden gidin: seviyenize uygun diziler, müzik ve kitaplar.", "3 месяца": "3 ay", "6 месяцев": "6 ay", "год": "bir yıl", "без срока": "süre yok", "1 - 2 часа": "1 - 2 saat", "3 - 5 часов": "3 - 5 saat", "6 - 10 часов": "6 - 10 saat", "больше 10 часов": "10 saatten fazla", "ещё не начинал": "henüz başlamadım", "до 3 месяцев": "3 aya kadar", "до года": "bir yıla kadar", "больше года": "bir yıldan fazla", "Профиль не заполнен": "Profil boş", "Укажите цель, и результат покажет разрыв до неё, а не только уровень.": "Hedefinizi belirtin, sonuç yalnızca seviyeyi değil hedefe kalan mesafeyi de gösterir.", "Заполнить": "Doldur", "Ваша цель": "Hedefiniz", "Изменить": "Değiştir", "срок ": "süre ", " мес, ": " ay, ", " ч в неделю": " saat / hafta", "Hedef · Ваша цель": "Hedef", "сейчас": "şimdi", "цель": "hedef", "Цель достигнута: вы уже на этом уровне. Имеет смысл поставить следующую ступень и держать язык в форме.": "Hedefe ulaşıldı: bu seviyedesiniz. Bir üst basamağı hedeflemek ve dili formda tutmak mantıklı.", "До цели примерно ": "Hedefe yaklaşık ", " учебных часов. При ": " ders saati kaldı. Haftada ", " часах в неделю это около ": " saat ile bu yaklaşık ", " недель, то есть примерно ": " hafta, yani yaklaşık ", " месяцев.": " ay eder.", "Срок вы не ставили, так что это просто ориентир по темпу.": "Süre belirtmediniz, bu yüzden bu yalnızca tempo hakkında fikir verir.", "В ваш срок ": "Belirlediğiniz ", " мес это укладывается, темп можно не менять.": " aylık süreye sığıyor, tempoyu değiştirmeniz gerekmez.", " мес это не укладывается: чтобы успеть, нужно около ": " aylık süreye sığmıyor: yetişmek için haftada yaklaşık ", " часов в неделю.": " saat gerekir.", "Часы это ориентир по программе уровней, а не обещание: скорость сильно зависит от того, сколько вы говорите и читаете вне занятий.": "Saatler seviye programına göre bir tahmindir, garanti değil: hız, ders dışında ne kadar konuşup okuduğunuza bağlıdır.", "Изменить цель": "Hedefi değiştir", "осталось примерно ": "yaklaşık ", " часов": " saat kaldı", "Цель: ": "Hedef: ", "цель достигнута": "hedefe ulaşıldı", "до цели примерно ": "hedefe yaklaşık ", "Сохранение картинки здесь недоступно, но её можно сохранить долгим нажатием.": "Görseli burada indirmek mümkün değil, uzun basarak kaydedebilirsiniz.", "турецкие буквы": "Türkçe harfler", "Seviye sınavı sonucu · Вердикт по уровню": "Seviye sınavı sonucu", "Уровень ": "Seviye ", " сдан": " geçildi", " не сдан": " geçilemedi", "Верных ответов ": "Doğru cevap oranı yüzde ", " процентов, порог 70 процентов.": ", geçme sınırı yüzde 70.", "Уровень взят. Можно пробовать следующий: ": "Seviye geçildi. Sıradakini deneyebilirsiniz: ", "держите форму на C1": "C1 formunu koruyun", "Чтобы взять этот уровень, нужно 70 процентов и выше. Сейчас имеет смысл вернуться к уровню ": "Bu seviyeyi geçmek için yüzde 70 ve üzeri gerekir. Şimdilik şu seviyeye dönmek mantıklı: ", " и закрыть темы из списка ниже.": " ve aşağıdaki konuları kapatmak.", "Это тест на один уровень, поэтому результат не поднимается выше него.": "Bu tek bir seviyeye yönelik bir testtir, bu yüzden sonuç o seviyenin üstüne çıkmaz.", "режимов": "mod", "заданий в банке": "soru havuzunda", "Ders materyalleri · Учебные материалы": "Ders materyalleri", "Материалы": "Materyaller", "Учебники, по которым построен экзамен": "Sınavın dayandığı ders kitapları", "Темы заданий расставлены по этим наборам. После экзамена разбор ошибок подсказывает, какой юнит и какие страницы открыть.": "Soruların konuları bu setlere göre sıralanmıştır. Sınavdan sonra hata analizi hangi üniteyi ve hangi sayfaları açmanız gerektiğini söyler.", "юнитов": "ünite", "s. ": "s. ", "Тренировать этот юнит": "Bu üniteyi çalış", "Честно про содержание": "İçerik hakkında dürüstçe", "Задания в тесте написаны специально для него по темам и лексике этих юнитов. Упражнения из самих учебников не копируются: это чужой защищённый материал, и распространять его через сайт нельзя. Ссылки на юниты и страницы даны, чтобы вы открывали свою книгу.": "Testteki sorular bu ünitelerin konu ve kelimelerine göre özel olarak yazılmıştır. Ders kitaplarının alıştırmaları kopyalanmaz: onlar telif hakkıyla korunan içeriktir ve site üzerinden dağıtılamaz. Ünite ve sayfa bilgileri kendi kitabınızı açmanız için verilmiştir.", "Ünite ": "Ünite ", "Тренировка юнита": "Ünite çalışması", "Kitaptan çalışma · Что открыть в учебнике": "Kitaptan çalışma", "Сначала прочитайте правило в учебнике, потом сделайте упражнения этого юнита в рабочей тетради, и вернитесь к тренажёру по этой теме.": "Önce kuralı ders kitabından okuyun, sonra çalışma kitabında o ünitenin alıştırmalarını yapın, ardından bu konuda antrenmana dönün.", "Все материалы": "Tüm materyaller", "Серия пока не начата. Десять заданий в день, и счётчик пойдёт.": "Seri henüz başlamadı. Günde on soru çözün, sayaç işlemeye başlasın.", "меньше минуты": "bir dakikadan az", "Единого государственного экзамена по турецкому для иностранцев нет. Есть два разных документа: TYS от Yunus Emre Enstitüsü и сертификаты TÖMER конкретных университетов. TYS один на всю страну, с международной аккредитацией ALTE, но выдаётся только на B2 и C1 и сдаётся три раза в год. Сертификат университетского TÖMER покрывает все уровни от A1 до C1 и сдаётся почти в любую неделю, но у каждого вуза своя шкала баллов и своя цена.": "Yabancılar için tek bir devlet Türkçe sınavı yok. Birbirinden farklı iki belge var: Yunus Emre Enstitüsünün verdiği TYS ve tek tek üniversitelerin TÖMER belgeleri. TYS ülke genelinde tektir ve uluslararası ALTE akreditasyonu vardır, ancak yalnızca B2 ve C1 için verilir ve yılda üç kez yapılır. Üniversite TÖMER belgesi A1'den C1'e kadar bütün seviyeleri kapsar ve neredeyse her hafta girilebilir, ama her üniversitenin kendi puan cetveli ve kendi ücreti vardır.", "Какой документ подойдёт, решает не общий закон, а тот вуз или работодатель, куда вы подаёте. YÖK прямо перекладывает требование к языку на сам университет. Поэтому первое действие всегда одно: открыть правила приёма своего вуза и прочитать, какой сертификат и какой уровень он просит.": "Hangi belgenin uygun olduğuna genel bir yasa değil, başvurduğunuz üniversite ya da işveren karar verir. YÖK dil şartını doğrudan üniversitenin kendisine bırakır. Bu yüzden ilk adım her zaman aynıdır: gideceğiniz üniversitenin kabul koşullarını açıp hangi belgeyi ve hangi seviyeyi istediğini okumak.", "Yunus Emre Enstitüsü": "Yunus Emre Enstitüsü", "Уровни только B2 и C1. Не набрали на B2, не получите ничего.": "Yalnızca B2 ve C1 seviyeleri verilir. B2'yi tutturamazsanız hiçbir belge alamazsınız.", "Четыре секции: чтение 40 вопросов, аудирование 30, письмо 2 задания, говорение монолог и диалог. Всего 80 заданий, 100 баллов, 180 минут.": "Dört bölüm: okuma 40 soru, dinleme 30 soru, yazma 2 görev, konuşma bağımsız ve karşılıklı. Toplam 80 soru, 100 puan, 180 dakika.", "Порогов в баллах больше нет: с 2022 года их пересчитывают после каждой сессии. Цифры вроде B2 это 55 баллов гуляют по интернету, но они устарели.": "Sabit puan barajı artık yok: 2022'den beri her oturumdan sonra yeniden hesaplanıyor. İnternette dolaşan B2 için 55 puan gibi sayılar eskidir.", "Три раза в год, только очно. В Турции в 2026 году принимали только в Анкаре, за рубежом в центрах Yunus Emre примерно в 57 странах.": "Yılda üç kez, yalnızca yüz yüze. Türkiye'de 2026'da yalnızca Ankara'da yapıldı, yurt dışında ise yaklaşık 57 ülkedeki Yunus Emre merkezlerinde.", "Результат через 4 - 5 недель, сертификат курьером примерно через месяц после результата.": "Sonuç 4 - 5 hafta içinde, belge ise sonuçtan yaklaşık bir ay sonra kargoyla gelir.", "Действует 2 года.": "2 yıl geçerlidir.", "TÖMER · сертификат университета": "TÖMER · üniversite belgesi", "Ankara, Gazi, Yıldız Teknik, İstanbul Medeniyet и десятки других": "Ankara, Gazi, Yıldız Teknik, İstanbul Medeniyet ve onlarca üniversite", "Все уровни A1 - C1, у некоторых вузов ещё C2.": "A1 - C1 arası bütün seviyeler, bazı üniversitelerde ayrıca C2.", "Проверяют те же четыре навыка, но структура и вес секций у каждого вуза свои.": "Aynı dört beceri ölçülür, ama bölümlerin yapısı ve ağırlığı her üniversitede farklıdır.", "Шкалы разные. У одного вуза C1 начинается с 81 балла, у другого с 85, у третьего с 80. Один и тот же уровень владения может дать разную запись в сертификате.": "Puan cetvelleri farklıdır. Bir üniversitede C1 81 puandan, diğerinde 85'ten, bir başkasında 80'den başlar. Aynı dil düzeyi belgeye farklı seviye olarak yazılabilir.", "Сдают часто. Ankara TÖMER принимает онлайн каждую пятницу, Gazi TÖMER каждый будний день.": "Sınavlar sık yapılır. Ankara TÖMER her cuma çevrim içi sınav yapar, Gazi TÖMER her hafta içi günü.", "Результат за считанные дни. У Ankara TÖMER документ приходит в e-Devlet примерно за 5 рабочих дней.": "Sonuç birkaç gün içinde çıkar. Ankara TÖMER'de belge yaklaşık 5 iş gününde e-Devlet'e düşer.", "Срок действия зависит от вуза, обычно рассчитывайте на 2 года.": "Geçerlilik süresi üniversiteye göre değişir, genelde 2 yıl varsayın.", "За по сути один и тот же документ уровня C1 просят от 3500 до 12000 лир. Ankara TÖMER самый дорогой и самый узнаваемый. У TYS есть скидки: 50 процентов слушателям курсов Yunus Emre и студентам тюркологических отделений вузов-партнёров.": "Aslında aynı işi gören C1 belgesi için 3500 ile 12000 lira arasında ücret isteniyor. Ankara TÖMER en pahalı ve en tanınan olanı. TYS'de indirim var: Yunus Emre kurslarına katılanlara ve iş birliği yapılan üniversitelerin Türkoloji bölümü öğrencilerine yüzde 50.", "Освобождение от хазырлыка.": "Hazırlıktan muafiyet.", "Главный практический смысл: с готовым сертификатом вы идёте сразу на первый курс, а не тратите год на языковую подготовку.": "Asıl pratik faydası bu: elinizde belge varsa doğrudan birinci sınıfa başlarsınız, bir yılı dil hazırlığına harcamazsınız.", "Поступление.": "Kabul.", "Для программ на турецком стандарт это C1. B2 чаще берут условно: зачисляют, но обязывают дотянуть до C1 за один или два года, иначе отчисляют.": "Türkçe programlar için standart C1'dir. B2 çoğunlukla şartlı kabul edilir: kaydınızı yaparlar ama bir ya da iki yıl içinde C1'e çıkmanızı isterler, çıkamazsanız kaydınız silinir.", "Türkiye Bursları.": "Türkiye Bursları.", "Стипендиатам дают бесплатный год турецкого независимо от языка основной программы, и по итогам ждут C1 из университетского TÖMER.": "Burslulara, asıl programın dili ne olursa olsun ücretsiz bir yıl Türkçe verilir ve sonunda üniversite TÖMER'inden C1 beklenir.", "Гражданство.": "Vatandaşlık.", "В законе сказано только говорить по-турецки в достаточной степени, без уровня CEFR и без обязательного сертификата. Уровень оценивают на собеседовании. Цифры про A2 или B1, которые ходят по форумам, официального подтверждения не имеют.": "Kanunda yalnızca yeteri kadar Türkçe konuşabilmek yazar, CEFR seviyesi de zorunlu bir belge de belirtilmez. Seviye mülakatta değerlendirilir. Forumlarda dolaşan A2 ya da B1 rakamlarının resmî bir dayanağı yoktur.", "Работа.": "İş.", "Юридически сертификат не обязателен, но в международных компаниях, в преподавании и в переводе он работает как доказательство уровня.": "Hukuken belge zorunlu değildir, ama uluslararası şirketlerde, öğretmenlikte ve çeviride seviyenizin kanıtı olarak işe yarar.", "Цифры по программе Gazi TÖMER при 30 часах в неделю. Это интенсив полного дня. При 4 - 6 часах в неделю тот же путь занимает несколько лет, поэтому оценка в вашем кабинете считает часы, а не месяцы.": "Rakamlar Gazi TÖMER programından, haftada 30 saat üzerinden. Bu tam günlük yoğun programdır. Haftada 4 - 6 saatle aynı yol birkaç yıl sürer, bu yüzden kabindeki tahmin ayları değil ders saatlerini sayar.", "Собрано с официальных сайтов Yunus Emre Enstitüsü, YÖK, Ankara Üniversitesi TÖMER, Gazi TÖMER, Yıldız Teknik TÖMER, İstanbul Medeniyet DİLMER и Türkiye Bursları. Актуальность: ": "Bilgiler Yunus Emre Enstitüsü, YÖK, Ankara Üniversitesi TÖMER, Gazi TÖMER, Yıldız Teknik TÖMER, İstanbul Medeniyet DİLMER ve Türkiye Bursları resmî sitelerinden derlendi. Güncellik: ", ". Даты экзаменов, цены и требования вузов меняются, поэтому перед подачей всегда сверяйтесь с официальным сайтом.": ". Sınav tarihleri, ücretler ve üniversite şartları değişir, bu yüzden başvurmadan önce mutlaka resmî siteden kontrol edin.", "сентябрь 2026": "Eylül 2026", "А что с настоящим экзаменом": "Peki gerçek sınav", "Этот результат учебный. Сертификат, который принимают вузы, выдают Yunus Emre и университетские TÖMER. Как они устроены, сколько стоят и какой уровень требуют, собрано на отдельной странице.": "Bu sonuç öğrenme amaçlıdır. Üniversitelerin kabul ettiği belgeyi Yunus Emre ve üniversitelerin TÖMER birimleri verir. Nasıl işledikleri, ücretleri ve istenen seviye ayrı bir sayfada toplandı.", "Про экзамен TÖMER": "TÖMER sınavı hakkında", "Тренировка дня": "Günün antrenmanı", "Десять заданий в день: сначала темы, где вы ошибались, потом задания вашего уровня. Каждый пройденный день отмечается в кабинете, дни подряд считаются в серию.": "Günde on soru: önce hata yaptığınız konular, sonra kendi seviyenizden sorular. Tamamladığınız her gün kabinde işaretlenir, üst üste günler seri olarak sayılır.", "10 заданий": "10 soru", "около 4 минут": "yaklaşık 4 dakika", "серия дней": "gün serisi", "Günlük antrenman · Тренировка дня": "Günlük antrenman", "Десять заданий в день: сначала темы, где вы ошибались, потом задания вашего уровня. Пропущенный день обнуляет серию.": "Günde on soru: önce hata yaptığınız konular, sonra kendi seviyenizden sorular. Atlanan bir gün seriyi sıfırlar.", "дней подряд": "gün üst üste", "рекорд": "rekor", "на сегодня сделано": "bugünlük tamam", "Ещё десять": "On soru daha", "Пройти тренировку дня": "Günün antrenmanını yap", "Hakkınızda · О себе": "Hakkınızda", "Имя, цель и сколько времени вы готовы уделять языку. Тогда кабинет покажет не просто уровень, а расстояние до цели в учебных часах и реальный срок при вашем темпе.": "Adınız, hedefiniz ve dile haftada ne kadar zaman ayırabildiğiniz. Böylece kabin yalnızca seviyeyi değil, hedefe kalan ders saatini ve kendi temponuzdaki gerçek süreyi de gösterir.", "Заполнить профиль": "Profili doldur", "цель по уровню": "seviye hedefi", "зачем турецкий": "Türkçe ne için", "желаемый срок": "istenen süre", "часов в неделю": "saat / hafta", "Сохранить": "Kaydet", "İlerleme · Ваш путь по уровням": "İlerleme", "пути от нуля до C1 пройдено": "sıfırdan C1'e kadar yolun tamamlanan kısmı", "учебных часов до цели": "hedefe kalan ders saati", "попыток всего": "toplam deneme", "заданий решено": "çözülen soru", "верных за всё время": "tüm zamanlarda doğru oranı", "времени на тесты": "testlerde geçen süre", " мин": " dk", " ч": " saat", "Динамика уровня": "Seviye değişimi", "Как изменились секции": "Bölümler nasıl değişti", "Полоса это доля верных ответов в последней попытке, в скобках изменение по сравнению с первой сохранённой.": "Çubuk son denemedeki doğru cevap oranıdır, parantez içindeki sayı ilk kayıtlı denemeye göre değişimdir.", "Освоение тем": "Konuların durumu", "уверенно: ": "sağlam: ", "в работе: ": "üzerinde çalışılan: ", "проблемные: ": "sorunlu: ", "всего тем затронуто: ": "toplam konu: ", "Профиль, прогресс по уровням, серия дней и статистика по темам. Всё хранится в этом браузере и видно только вам.": "Profil, seviye ilerlemesi, gün serisi ve konu istatistikleri. Hepsi bu tarayıcıda saklanır ve yalnızca siz görürsünüz.", "Gerçek sınav · Настоящий экзамен": "Gerçek sınav", "Официальный экзамен по турецкому: как он устроен": "Resmî Türkçe sınavı nasıl işler", "Этот сайт даёт учебную оценку уровня. Сертификат, который признают вузы, выдают другие организации. Ниже коротко о том, какие экзамены бывают, сколько стоят и что дают.": "Bu site öğrenme amaçlı bir seviye tahmini verir. Üniversitelerin kabul ettiği belgeyi başka kurumlar düzenler. Aşağıda hangi sınavların olduğu, ne kadara mal olduğu ve ne sağladığı kısaca anlatılıyor.", "Главное в двух абзацах": "İki paragrafta özet", "Структура TYS по секциям": "TYS bölüm yapısı", "Секция": "Bölüm", "Заданий": "Soru", "Баллов": "Puan", "Время": "Süre", "Чтение": "Okuma", "Аудирование": "Dinleme", "Письмо": "Yazma", "Говорение": "Konuşma", "Итого": "Toplam", "мин": "dk", "Экзамен идёт тремя сессиями с перерывами: сначала чтение и аудирование, потом письмо, потом говорение.": "Sınav aralarla üç oturumda yapılır: önce okuma ve dinleme, sonra yazma, sonra konuşma.", "Сколько это стоит": "Ücretler", "Экзамен": "Sınav", "Цена": "Ücret", "Примечание": "Not", "Россия": "Rusya", "Казахстан, Азербайджан, Грузия": "Kazakistan, Azerbaycan, Gürcistan", "Турция": "Türkiye", "диплом": "diploma", "около 100 долларов": "yaklaşık 100 dolar", "Узбекистан 80 долларов": "Özbekistan 80 dolar", "цену перепроверяйте при подаче, она давно не менялась": "başvuruda ücreti tekrar kontrol edin, uzun süredir güncellenmemiş", "около 180 долларов": "yaklaşık 180 dolar", "около 240 долларов": "yaklaşık 240 dolar", "около 300 долларов": "yaklaşık 300 dolar", "около 82 долларов": "yaklaşık 82 dolar", "около 72 долларов": "yaklaşık 72 dolar", "цена от октября 2025, могла вырасти": "Ekim 2025 ücreti, artmış olabilir", "Что даёт сертификат": "Belge ne sağlar", "Сколько времени занимает подготовка": "Hazırlık ne kadar sürer", "Уровень": "Seviye", "Часов": "Saat", "Недель интенсива": "Yoğun program haftası", "С нуля до C1": "Sıfırdan C1'e", "Откуда данные": "Veriler nereden", "Проверить свой уровень": "Seviyemi ölç", "Все уровни": "Tüm seviyeler", "заданий": "soru", "Для этого уровня учебники пока не добавлены.": "Bu seviye için henüz ders kitabı eklenmedi."};
 for(var _k in DICT_ADD){ if(DICT_TR[_k]==null) DICT_TR[_k]=DICT_ADD[_k]; }
 function L(s){ return (LANG==="tr" && DICT_TR[s]!=null) ? DICT_TR[s] : s; }
 function exOf(o){ if(!o) return ""; return (LANG==="tr" && EXTR[o.id]) ? EXTR[o.id] : (o.ex||""); }
@@ -760,6 +800,9 @@ var MODES = [
   {key:"review", tr:"Hata tekrarı", ru:L("Работа над ошибками"),
    desc:L("Задания только по темам, где вы чаще всего ошибались. Список берётся из вашей статистики в кабинете."),
    meta:[L("до 15 заданий"),L("только слабые темы"),L("мгновенная проверка")]},
+  {key:"daily", tr:"Günün antrenmanı", ru:L("Тренировка дня"),
+   desc:L("Десять заданий в день: сначала темы, где вы ошибались, потом задания вашего уровня. Каждый пройденный день отмечается в кабинете, дни подряд считаются в серию."),
+   meta:[L("10 заданий"),L("около 4 минут"),L("серия дней")]},
   {key:"vocab", tr:"Kelime testi", ru:L("Тест словарного запаса"),
    desc:L("Двадцать заданий на лексику от A1 до C1. В конце оценка активного словаря в словах."),
    meta:[L("20 заданий"),L("оценка словаря"),L("около 7 минут")]}
@@ -880,15 +923,18 @@ function loadStore(){
     if(!s.topics) s.topics={};
     if(!s.attempts) s.attempts=[];
     if(!s.recent) s.recent=[];
+    if(!s.daily) s.daily={last:null,streak:0,best:0,days:{}};
+    if(!s.daily.days) s.daily.days={};
+    if(!s.totals) s.totals={sec:0,items:0,correct:0,runs:0,first:null};
     return s;
-  }catch(e){ return {name:"",attempts:[],topics:{},recent:[]}; }
+  }catch(e){ return {name:"",attempts:[],topics:{},recent:[],daily:{last:null,streak:0,best:0,days:{}},totals:{sec:0,items:0,correct:0,runs:0,first:null}}; }
 }
 function saveStore(s){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(s)); }catch(e){} }
 var store=loadStore();
 var state=null, timerId=null, ladderSel={};
 
 /* ---------- ekran yönetimi ---------- */
-var SCREENS=["s-splash","s-guide","s-modes","s-profile","s-books","s-config","s-intro","s-exam","s-result","s-cabinet"];
+var SCREENS=["s-splash","s-guide","s-modes","s-profile","s-books","s-tomer","s-config","s-intro","s-exam","s-result","s-cabinet"];
 function screens(show){
   SCREENS.forEach(function(id){ var el=$(id); if(el) el.hidden=(id!==show); });
   try{ window.scrollTo({top:0,behavior:"instant"}); }catch(e){ window.scrollTo(0,0); }
@@ -986,11 +1032,25 @@ function renderSplashHistory(){
   box.innerHTML="<div class=\"plain row\" style=\"justify-content:space-between\">"+
     "<div><p class=\"eyebrow\">"+L("Последняя попытка")+"</p><p style=\"margin-top:4px\">"+
     "<b style=\"font-family:'Bitter','Noto Serif',Georgia,serif;font-size:1.2rem;color:var(--accent)\">"+esc(last.level)+"</b>"+
-    "<span class=\"hint\"> · "+esc(last.modeName)+" · "+esc(last.dateLabel)+" · "+last.correct+L(" из ")+last.total+"</span></p></div>"+
+    "<span class=\"hint\"> · "+esc(last.mode?modeName(last.mode):last.modeName)+" · "+esc(last.dateLabel)+" · "+last.correct+L(" из ")+last.total+"</span></p></div>"+
     "<button class=\"btn btn-sm\" id=\"btn-open-cab\" type=\"button\">"+L("Открыть кабинет")+"</button></div>";
-  box.innerHTML=draftHtml+box.innerHTML;
+  var stk=streakNow();
+  var streakHtml="";
+  if(stk>0 || store.attempts.length){
+    streakHtml="<div class=\"plain row\" style=\"justify-content:space-between\">"+
+      "<div><p class=\"eyebrow\">"+L("Günlük antrenman · Тренировка дня")+"</p>"+
+      "<p style=\"margin-top:4px\">"+
+      (stk>0 ? "<b style=\"font-family:'Bitter','Noto Serif',Georgia,serif;font-size:1.2rem;color:var(--gold)\">"+stk+"</b><span class=\"hint\"> "+daysWord(stk)+"</span>"
+             : "<span class=\"hint\">"+L("Серия пока не начата. Десять заданий в день, и счётчик пойдёт.")+"</span>")+
+      (dailyDoneToday()? "<span class=\"hint\"> · "+L("на сегодня сделано")+"</span>":"")+"</p></div>"+
+      "<button class=\"btn btn-sm"+(dailyDoneToday()?"":" btn-primary")+"\" id=\"btn-splash-daily\" type=\"button\">"+
+      (dailyDoneToday()? L("Ещё десять") : L("Пройти тренировку дня"))+"</button></div>";
+  }
+  box.innerHTML=draftHtml+streakHtml+box.innerHTML;
   bindDraftButtons();
   $("btn-open-cab").onclick=showCabinet;
+  var sd=$("btn-splash-daily");
+  if(sd) sd.onclick=function(){ store.name=store.name||"Misafir"; startExam("daily",{}); };
 }
 
 /* ---------- ders materyalleri / учебные материалы ---------- */
@@ -1087,6 +1147,106 @@ function showBooks(lv){
   screens("s-books");
 }
 
+/* ---------- gerçek TÖMER sınavı / про настоящий экзамен ---------- */
+var TOMER_FACTS_DATE=L("сентябрь 2026");
+function showTomer(){
+  if(state){ openExit(function(){ showTomer(); }); return; }
+  var h="";
+  h+="<div class=\"stack\"><p class=\"eyebrow\">"+L("Gerçek sınav · Настоящий экзамен")+"</p>"+
+    "<h1>"+L("Официальный экзамен по турецкому: как он устроен")+"</h1>"+
+    "<p class=\"lead\">"+L("Этот сайт даёт учебную оценку уровня. Сертификат, который признают вузы, выдают другие организации. Ниже коротко о том, какие экзамены бывают, сколько стоят и что дают.")+"</p></div>";
+
+  h+="<div class=\"card stack\"><p class=\"eyebrow\">"+L("Главное в двух абзацах")+"</p>"+
+    "<p>"+L("Единого государственного экзамена по турецкому для иностранцев нет. Есть два разных документа: TYS от Yunus Emre Enstitüsü и сертификаты TÖMER конкретных университетов. TYS один на всю страну, с международной аккредитацией ALTE, но выдаётся только на B2 и C1 и сдаётся три раза в год. Сертификат университетского TÖMER покрывает все уровни от A1 до C1 и сдаётся почти в любую неделю, но у каждого вуза своя шкала баллов и своя цена.")+"</p>"+
+    "<p>"+L("Какой документ подойдёт, решает не общий закон, а тот вуз или работодатель, куда вы подаёте. YÖK прямо перекладывает требование к языку на сам университет. Поэтому первое действие всегда одно: открыть правила приёма своего вуза и прочитать, какой сертификат и какой уровень он просит.")+"</p></div>";
+
+  h+="<div class=\"twocol\">"+
+    "<div class=\"card stack-sm\"><p class=\"eyebrow\">TYS · Türkçe Yeterlik Sınavı</p>"+
+      "<p class=\"hint\">"+L("Yunus Emre Enstitüsü")+"</p>"+
+      "<ul class=\"tlist\">"+
+        "<li>"+L("Уровни только B2 и C1. Не набрали на B2, не получите ничего.")+"</li>"+
+        "<li>"+L("Четыре секции: чтение 40 вопросов, аудирование 30, письмо 2 задания, говорение монолог и диалог. Всего 80 заданий, 100 баллов, 180 минут.")+"</li>"+
+        "<li>"+L("Порогов в баллах больше нет: с 2022 года их пересчитывают после каждой сессии. Цифры вроде B2 это 55 баллов гуляют по интернету, но они устарели.")+"</li>"+
+        "<li>"+L("Три раза в год, только очно. В Турции в 2026 году принимали только в Анкаре, за рубежом в центрах Yunus Emre примерно в 57 странах.")+"</li>"+
+        "<li>"+L("Результат через 4 - 5 недель, сертификат курьером примерно через месяц после результата.")+"</li>"+
+        "<li>"+L("Действует 2 года.")+"</li>"+
+      "</ul></div>"+
+    "<div class=\"card stack-sm\"><p class=\"eyebrow\">"+L("TÖMER · сертификат университета")+"</p>"+
+      "<p class=\"hint\">"+L("Ankara, Gazi, Yıldız Teknik, İstanbul Medeniyet и десятки других")+"</p>"+
+      "<ul class=\"tlist\">"+
+        "<li>"+L("Все уровни A1 - C1, у некоторых вузов ещё C2.")+"</li>"+
+        "<li>"+L("Проверяют те же четыре навыка, но структура и вес секций у каждого вуза свои.")+"</li>"+
+        "<li>"+L("Шкалы разные. У одного вуза C1 начинается с 81 балла, у другого с 85, у третьего с 80. Один и тот же уровень владения может дать разную запись в сертификате.")+"</li>"+
+        "<li>"+L("Сдают часто. Ankara TÖMER принимает онлайн каждую пятницу, Gazi TÖMER каждый будний день.")+"</li>"+
+        "<li>"+L("Результат за считанные дни. У Ankara TÖMER документ приходит в e-Devlet примерно за 5 рабочих дней.")+"</li>"+
+        "<li>"+L("Срок действия зависит от вуза, обычно рассчитывайте на 2 года.")+"</li>"+
+      "</ul></div>"+
+    "</div>";
+
+  h+="<div class=\"card stack\"><p class=\"eyebrow\">"+L("Структура TYS по секциям")+"</p>"+
+    "<div class=\"tablewrap\"><table class=\"full\"><thead><tr>"+
+      "<th>"+L("Секция")+"</th><th>"+L("Заданий")+"</th><th>"+L("Баллов")+"</th><th>"+L("Время")+"</th></tr></thead><tbody>"+
+      "<tr><td>"+L("Чтение")+"</td><td>40</td><td>25</td><td>60 "+L("мин")+"</td></tr>"+
+      "<tr><td>"+L("Аудирование")+"</td><td>30</td><td>25</td><td>45 "+L("мин")+"</td></tr>"+
+      "<tr><td>"+L("Письмо")+"</td><td>2</td><td>25</td><td>60 "+L("мин")+"</td></tr>"+
+      "<tr><td>"+L("Говорение")+"</td><td>8</td><td>25</td><td>15 "+L("мин")+"</td></tr>"+
+      "<tr><td><b>"+L("Итого")+"</b></td><td><b>80</b></td><td><b>100</b></td><td><b>180 "+L("мин")+"</b></td></tr>"+
+    "</tbody></table></div>"+
+    "<p class=\"hint\">"+L("Экзамен идёт тремя сессиями с перерывами: сначала чтение и аудирование, потом письмо, потом говорение.")+"</p></div>";
+
+  h+="<div class=\"card stack\"><p class=\"eyebrow\">"+L("Сколько это стоит")+"</p>"+
+    "<div class=\"tablewrap\"><table class=\"full\"><thead><tr>"+
+      "<th>"+L("Экзамен")+"</th><th>"+L("Цена")+"</th><th>"+L("Примечание")+"</th></tr></thead><tbody>"+
+      "<tr><td>TYS, "+L("Россия")+"</td><td>8000 RUB</td><td>"+L("около 100 долларов")+"</td></tr>"+
+      "<tr><td>TYS, "+L("Казахстан, Азербайджан, Грузия")+"</td><td>100 USD</td><td>"+L("Узбекистан 80 долларов")+"</td></tr>"+
+      "<tr><td>TYS, "+L("Турция")+"</td><td>800 TL</td><td>"+L("цену перепроверяйте при подаче, она давно не менялась")+"</td></tr>"+
+      "<tr><td>Ankara TÖMER, A1 - B1</td><td>7500 TL</td><td>"+L("около 180 долларов")+"</td></tr>"+
+      "<tr><td>Ankara TÖMER, B2</td><td>10000 TL</td><td>"+L("около 240 долларов")+"</td></tr>"+
+      "<tr><td>Ankara TÖMER, C1 "+L("диплом")+"</td><td>12000 TL</td><td>"+L("около 300 долларов")+"</td></tr>"+
+      "<tr><td>Yıldız Teknik TÖMER</td><td>4000 TL</td><td>"+L("около 82 долларов")+"</td></tr>"+
+      "<tr><td>İstanbul Medeniyet DİLMER</td><td>3500 TL</td><td>"+L("около 72 долларов")+"</td></tr>"+
+      "<tr><td>Gazi TÖMER</td><td>2500 TL</td><td>"+L("цена от октября 2025, могла вырасти")+"</td></tr>"+
+    "</tbody></table></div>"+
+    "<p class=\"hint\">"+L("За по сути один и тот же документ уровня C1 просят от 3500 до 12000 лир. Ankara TÖMER самый дорогой и самый узнаваемый. У TYS есть скидки: 50 процентов слушателям курсов Yunus Emre и студентам тюркологических отделений вузов-партнёров.")+"</p></div>";
+
+  h+="<div class=\"card stack\"><p class=\"eyebrow\">"+L("Что даёт сертификат")+"</p>"+
+    "<ul class=\"tlist\">"+
+      "<li><b>"+L("Освобождение от хазырлыка.")+"</b> "+L("Главный практический смысл: с готовым сертификатом вы идёте сразу на первый курс, а не тратите год на языковую подготовку.")+"</li>"+
+      "<li><b>"+L("Поступление.")+"</b> "+L("Для программ на турецком стандарт это C1. B2 чаще берут условно: зачисляют, но обязывают дотянуть до C1 за один или два года, иначе отчисляют.")+"</li>"+
+      "<li><b>"+L("Türkiye Bursları.")+"</b> "+L("Стипендиатам дают бесплатный год турецкого независимо от языка основной программы, и по итогам ждут C1 из университетского TÖMER.")+"</li>"+
+      "<li><b>"+L("Гражданство.")+"</b> "+L("В законе сказано только говорить по-турецки в достаточной степени, без уровня CEFR и без обязательного сертификата. Уровень оценивают на собеседовании. Цифры про A2 или B1, которые ходят по форумам, официального подтверждения не имеют.")+"</li>"+
+      "<li><b>"+L("Работа.")+"</b> "+L("Юридически сертификат не обязателен, но в международных компаниях, в преподавании и в переводе он работает как доказательство уровня.")+"</li>"+
+    "</ul></div>";
+
+  h+="<div class=\"card stack\"><p class=\"eyebrow\">"+L("Сколько времени занимает подготовка")+"</p>"+
+    "<div class=\"tablewrap\"><table class=\"full\"><thead><tr>"+
+      "<th>"+L("Уровень")+"</th><th>"+L("Часов")+"</th><th>"+L("Недель интенсива")+"</th></tr></thead><tbody>"+
+      "<tr><td>A1</td><td>175</td><td>6</td></tr>"+
+      "<tr><td>A2</td><td>175</td><td>6</td></tr>"+
+      "<tr><td>B1</td><td>175</td><td>6</td></tr>"+
+      "<tr><td>B2</td><td>175</td><td>6</td></tr>"+
+      "<tr><td>C1</td><td>250</td><td>8</td></tr>"+
+      "<tr><td><b>"+L("С нуля до C1")+"</b></td><td><b>950</b></td><td><b>32</b></td></tr>"+
+    "</tbody></table></div>"+
+    "<p class=\"hint\">"+L("Цифры по программе Gazi TÖMER при 30 часах в неделю. Это интенсив полного дня. При 4 - 6 часах в неделю тот же путь занимает несколько лет, поэтому оценка в вашем кабинете считает часы, а не месяцы.")+"</p></div>";
+
+  h+="<div class=\"plain stack-sm\"><p class=\"eyebrow\">"+L("Откуда данные")+"</p>"+
+    "<p class=\"hint\">"+L("Собрано с официальных сайтов Yunus Emre Enstitüsü, YÖK, Ankara Üniversitesi TÖMER, Gazi TÖMER, Yıldız Teknik TÖMER, İstanbul Medeniyet DİLMER и Türkiye Bursları. Актуальность: ")+L("сентябрь 2026")+L(". Даты экзаменов, цены и требования вузов меняются, поэтому перед подачей всегда сверяйтесь с официальным сайтом.")+"</p>"+
+    "<div class=\"row\" style=\"margin-top:8px\">"+
+      "<a class=\"btn btn-sm\" href=\"https://tys.yee.org.tr\" target=\"_blank\" rel=\"noopener\">tys.yee.org.tr</a>"+
+      "<a class=\"btn btn-sm\" href=\"https://tomer.ankara.edu.tr\" target=\"_blank\" rel=\"noopener\">tomer.ankara.edu.tr</a>"+
+      "<a class=\"btn btn-sm\" href=\"https://www.turkiyeburslari.gov.tr\" target=\"_blank\" rel=\"noopener\">turkiyeburslari.gov.tr</a>"+
+    "</div></div>";
+
+  h+="<div class=\"row\">"+
+    "<button class=\"btn btn-primary\" id=\"btn-tomer-go\" type=\"button\">"+L("Проверить свой уровень")+"</button>"+
+    "<a class=\"btn\" href=\"https://t.me/alterna_turkish\" target=\"_blank\" rel=\"noopener\">"+L("Канал в Telegram")+"</a></div>";
+
+  $("s-tomer").innerHTML=h;
+  $("btn-tomer-go").onclick=showModes;
+  screens("s-tomer");
+}
+
 /* ---------- profil / профиль ---------- */
 function getProfile(){
   var p=store.profile||{};
@@ -1102,62 +1262,117 @@ function whyName(k){
   return "";
 }
 var pf=null;
+/* поля профиля с произвольным префиксом id, чтобы форму можно было встроить и в кабинет */
+function profileFieldsHtml(px){
+  return "<div class=\"field\"><label for=\""+px+"-name\">"+L("Как вас зовут")+"</label>"+
+      "<input type=\"text\" id=\""+px+"-name\" placeholder=\"Timur\" autocomplete=\"given-name\"></div>"+
+    "<div class=\"stack-sm\"><p class=\"eyebrow\">"+L("Какой уровень хотите взять")+"</p><div class=\"chips\" id=\""+px+"-goal\"></div></div>"+
+    "<div class=\"stack-sm\"><p class=\"eyebrow\">"+L("Зачем вам турецкий")+"</p><div class=\"chips\" id=\""+px+"-why\"></div></div>"+
+    "<div class=\"stack-sm\"><p class=\"eyebrow\">"+L("За какой срок хотите дойти")+"</p><div class=\"chips\" id=\""+px+"-deadline\"></div></div>"+
+    "<div class=\"stack-sm\"><p class=\"eyebrow\">"+L("Сколько времени готовы уделять в неделю")+"</p><div class=\"chips\" id=\""+px+"-hours\"></div></div>"+
+    "<div class=\"stack-sm\"><p class=\"eyebrow\">"+L("Как давно учите турецкий")+"</p><div class=\"chips\" id=\""+px+"-exper\"></div></div>";
+}
+function drawProfileChips(px){
+  px=px||"pf";
+  var g=$(px+"-goal"); if(!g) return;
+  g.innerHTML=LEVELS.map(function(l,i){
+    return "<button class=\"chk\" type=\"button\" data-g=\""+i+"\" aria-pressed=\""+(pf.goal===i)+"\">"+l+"</button>";
+  }).join("");
+  $(px+"-why").innerHTML=WHY.map(function(w){
+    return "<button class=\"chk\" type=\"button\" data-w=\""+w.k+"\" aria-pressed=\""+(pf.why===w.k)+"\">"+L(w.ru)+"</button>";
+  }).join("");
+  $(px+"-deadline").innerHTML=DEADLINES.map(function(d){
+    return "<button class=\"chk\" type=\"button\" data-d=\""+d.m+"\" aria-pressed=\""+(pf.deadline===d.m)+"\">"+L(d.ru)+"</button>";
+  }).join("");
+  $(px+"-hours").innerHTML=HOURS.map(function(h){
+    return "<button class=\"chk\" type=\"button\" data-h=\""+h.h+"\" aria-pressed=\""+(pf.hours===h.h)+"\">"+L(h.ru)+"</button>";
+  }).join("");
+  $(px+"-exper").innerHTML=EXPER.map(function(e){
+    return "<button class=\"chk\" type=\"button\" data-e=\""+e.k+"\" aria-pressed=\""+(pf.exper===e.k)+"\">"+L(e.ru)+"</button>";
+  }).join("");
+  function bind(sel,attr,key,num){
+    var host=$(px+sel); if(!host) return;
+    Array.prototype.forEach.call(host.querySelectorAll(".chk"),function(b){
+      b.onclick=function(){ var v=b.getAttribute(attr); pf[key]=num?parseInt(v,10):v; drawProfileChips(px); };
+    });
+  }
+  bind("-goal","data-g","goal",true);
+  bind("-why","data-w","why",false);
+  bind("-deadline","data-d","deadline",true);
+  bind("-hours","data-h","hours",true);
+  bind("-exper","data-e","exper",false);
+}
+function saveProfileFrom(px){
+  var el=$(px+"-name");
+  pf.name=(el?el.value:"")||"";
+  pf.name=pf.name.trim();
+  store.profile={name:pf.name, goal:pf.goal, why:pf.why, deadline:pf.deadline, hours:pf.hours, exper:pf.exper};
+  if(pf.name) store.name=pf.name;
+  saveStore(store);
+}
 function openProfile(next){
   pf=getProfile(); pf.next=next||null;
   var html="<div class=\"stack\"><p class=\"eyebrow\">"+L("Профиль · Ваша цель")+"</p>"+
     "<h1>"+L("Расскажите о себе")+"</h1>"+
     "<p class=\"lead\">"+L("Это нужно, чтобы результат показывал не просто уровень, а разрыв между тем, где вы сейчас, и тем, куда хотите прийти.")+"</p></div>"+
-    "<div class=\"card stack\">"+
-      "<div class=\"field\"><label for=\"pf-name\">"+L("Как вас зовут")+"</label>"+
-        "<input type=\"text\" id=\"pf-name\" placeholder=\"Timur\" autocomplete=\"given-name\"></div>"+
-      "<div class=\"stack-sm\"><p class=\"eyebrow\">"+L("Какой уровень хотите взять")+"</p><div class=\"chips\" id=\"pf-goal\"></div></div>"+
-      "<div class=\"stack-sm\"><p class=\"eyebrow\">"+L("Зачем вам турецкий")+"</p><div class=\"chips\" id=\"pf-why\"></div></div>"+
-      "<div class=\"stack-sm\"><p class=\"eyebrow\">"+L("За какой срок хотите дойти")+"</p><div class=\"chips\" id=\"pf-deadline\"></div></div>"+
-      "<div class=\"stack-sm\"><p class=\"eyebrow\">"+L("Сколько времени готовы уделять в неделю")+"</p><div class=\"chips\" id=\"pf-hours\"></div></div>"+
-      "<div class=\"stack-sm\"><p class=\"eyebrow\">"+L("Как давно учите турецкий")+"</p><div class=\"chips\" id=\"pf-exper\"></div></div>"+
+    "<div class=\"card stack\">"+profileFieldsHtml("pf")+
       "<div class=\"row\"><button class=\"btn btn-primary\" id=\"pf-save\" type=\"button\">"+L("Сохранить и продолжить")+"</button>"+
       "<button class=\"btn\" id=\"pf-skip\" type=\"button\">"+L("Пропустить")+"</button></div>"+
     "</div>";
   $("s-profile").innerHTML=html;
   $("pf-name").value=pf.name;
-  drawProfileChips();
+  drawProfileChips("pf");
   $("pf-save").onclick=function(){
-    pf.name=($("pf-name").value||"").trim();
-    store.profile={name:pf.name, goal:pf.goal, why:pf.why, deadline:pf.deadline, hours:pf.hours, exper:pf.exper};
-    if(pf.name) store.name=pf.name;
-    saveStore(store);
+    saveProfileFrom("pf");
     var n=pf.next; if(n) n(); else showModes();
   };
   $("pf-skip").onclick=function(){ var n=pf.next; if(n) n(); else showModes(); };
   screens("s-profile");
 }
-function drawProfileChips(){
-  $("pf-goal").innerHTML=LEVELS.map(function(l,i){
-    return "<button class=\"chk\" type=\"button\" data-g=\""+i+"\" aria-pressed=\""+(pf.goal===i)+"\">"+l+"</button>";
-  }).join("");
-  $("pf-why").innerHTML=WHY.map(function(w){
-    return "<button class=\"chk\" type=\"button\" data-w=\""+w.k+"\" aria-pressed=\""+(pf.why===w.k)+"\">"+L(w.ru)+"</button>";
-  }).join("");
-  $("pf-deadline").innerHTML=DEADLINES.map(function(d){
-    return "<button class=\"chk\" type=\"button\" data-d=\""+d.m+"\" aria-pressed=\""+(pf.deadline===d.m)+"\">"+L(d.ru)+"</button>";
-  }).join("");
-  $("pf-hours").innerHTML=HOURS.map(function(h){
-    return "<button class=\"chk\" type=\"button\" data-h=\""+h.h+"\" aria-pressed=\""+(pf.hours===h.h)+"\">"+L(h.ru)+"</button>";
-  }).join("");
-  $("pf-exper").innerHTML=EXPER.map(function(e){
-    return "<button class=\"chk\" type=\"button\" data-e=\""+e.k+"\" aria-pressed=\""+(pf.exper===e.k)+"\">"+L(e.ru)+"</button>";
-  }).join("");
-  function bind(sel,attr,key,num){
-    Array.prototype.forEach.call(document.querySelectorAll(sel+" .chk"),function(b){
-      b.onclick=function(){ var v=b.getAttribute(attr); pf[key]=num?parseInt(v,10):v; drawProfileChips(); };
-    });
-  }
-  bind("#pf-goal","data-g","goal",true);
-  bind("#pf-why","data-w","why",false);
-  bind("#pf-deadline","data-d","deadline",true);
-  bind("#pf-hours","data-h","hours",true);
-  bind("#pf-exper","data-e","exper",false);
+
+/* ---------- günlük antrenman / ежедневная тренировка ---------- */
+function dayKey(d){ d=d||new Date(); return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate()); }
+function dayShift(k, n){
+  var p=k.split("-"), d=new Date(parseInt(p[0],10), parseInt(p[1],10)-1, parseInt(p[2],10));
+  d.setDate(d.getDate()+n);
+  return dayKey(d);
 }
+function getDaily(){
+  var d=store.daily||{};
+  return {last:d.last||null, streak:d.streak||0, best:d.best||0, days:d.days||{}};
+}
+function dailyDoneToday(){ var d=getDaily(); return !!d.days[dayKey()]; }
+function markDaily(ok, n){
+  var d=getDaily(), k=dayKey();
+  if(!d.days[k]){
+    if(d.last===dayShift(k,-1)) d.streak=d.streak+1;
+    else d.streak=1;
+    d.last=k;
+    if(d.streak>d.best) d.best=d.streak;
+  }
+  var cur=d.days[k]||{ok:0,n:0};
+  cur.ok+=ok; cur.n+=n;
+  d.days[k]=cur;
+  var keys=Object.keys(d.days).sort();
+  if(keys.length>400) keys.slice(0,keys.length-400).forEach(function(x){ delete d.days[x]; });
+  store.daily=d; saveStore(store);
+}
+function daysWord(n){
+  if(LANG==="tr") return L("дней подряд");
+  var a=Math.abs(n)%100, b=a%10;
+  if(a>10 && a<20) return "дней подряд";
+  if(b===1) return "день подряд";
+  if(b>=2 && b<=4) return "дня подряд";
+  return "дней подряд";
+}
+function streakNow(){
+  var d=getDaily();
+  if(!d.last) return 0;
+  var k=dayKey();
+  if(d.last===k || d.last===dayShift(k,-1)) return d.streak;
+  return 0;
+}
+
 /* расчёт разрыва до цели */
 function goalPlan(curIdx){
   var p=getProfile();
@@ -1316,6 +1531,23 @@ function buildPlan(mode, opts){
              label:(bk?bk.short:"")+" · "+L("Ünite ")+opts.unit,
              labelRu:(bu?bu.name:"")}];
   }
+  if(mode==="daily"){
+    var lvNow = store.attempts.length ? clamp(Math.round(store.attempts[0].overall),0,4) : 1;
+    var weakD=weakTopics();
+    var pickedD=[], seenD=seen;
+    var poolWeak=allItems().filter(function(x){ return x.topic && weakD.indexOf(x.topic)>=0; });
+    pickedD=pickedD.concat(uniquePick(shuffle(poolWeak), 6, seenD));
+    var near=allItems().filter(function(x){
+      return Math.abs(x.lvl-lvNow)<=1 && pickedD.indexOf(x)<0 && x.type!=="order" && x.type!=="typed";
+    });
+    pickedD=pickedD.concat(uniquePick(shuffle(near), 10-pickedD.length, seenD));
+    if(pickedD.length<10){
+      var rest=allItems().filter(function(x){ return pickedD.indexOf(x)<0; });
+      pickedD=pickedD.concat(uniquePick(shuffle(rest), 10-pickedD.length, seenD));
+    }
+    return [{key:"mix", items:tag(shuffle(pickedD).slice(0,10),"mix"),
+             label:"Günün antrenmanı", labelRu:L("Тренировка дня")}];
+  }
   if(mode==="review"){
     var weak=weakTopics();
     var byTopic={};
@@ -1394,6 +1626,7 @@ function regSigs(items, seen){
 function modeName(mode){
   for(var i=0;i<MODES.length;i++) if(MODES[i].key===mode) return MODES[i].ru;
   if(mode==="unit") return L("Тренировка юнита");
+  if(mode==="daily") return L("Тренировка дня");
   return mode;
 }
 /* какие юниты учебников закрывают эту тему */
@@ -1414,7 +1647,7 @@ function startExam(mode, opts){
   state={
     mode:mode, opts:opts, name:(store.name||"Misafir"),
     startedAt:Date.now(), limitSec:(mode==="tomer"?45*60:0),
-    instant:(mode==="trainer"||mode==="review"||mode==="unit"),
+    instant:(mode==="trainer"||mode==="review"||mode==="unit"||mode==="daily"),
     blocks:blocks, bi:0, qi:0, theta:1.0,
     steps:[0.9,0.85,0.8,0.75,0.7,0.6,0.55,0.5,0.45,0.45,0.4,0.4,0.35,0.35,0.3,0.3,0.3,0.3],
     askedIds:{}, current:null, picked:null, order:[], graded:false, plays:0,
@@ -1839,6 +2072,13 @@ function finishExam(timeout){
     sections:sections, answers:all, mistakes:all.filter(function(x){return !x.correct;})
   };
   store.recent=all.map(function(a){return a.id;}).concat(store.recent||[]).slice(0,260);
+  if(!store.totals) store.totals={sec:0,items:0,correct:0,runs:0,first:null};
+  store.totals.sec += att.durationSec||0;
+  store.totals.items += att.total||0;
+  store.totals.correct += att.correct||0;
+  store.totals.runs += 1;
+  if(!store.totals.first) store.totals.first=att.date;
+  if(state.mode==="daily") markDaily(att.correct||0, att.total||0);
   store.attempts.unshift(att);
   if(store.attempts.length>12) store.attempts=store.attempts.slice(0,12);
   all.forEach(function(a){
@@ -1900,7 +2140,7 @@ function renderResult(att){
   var html="";
 
   html+="<div class=\"stack\">"+
-    "<p class=\"eyebrow\">Sınav sonucu · "+esc(att.name)+" · "+esc(att.modeName)+" · "+esc(att.dateLabel)+"</p>"+
+    "<p class=\"eyebrow\">Sınav sonucu · "+esc(att.name)+" · "+esc(att.mode?modeName(att.mode):att.modeName)+" · "+esc(att.dateLabel)+"</p>"+
     (att.timeout?"<p class=\"hint\">"+L("Время вышло, экзамен закрыт автоматически. Неотвеченные задания в подсчёт не вошли.")+"</p>":"")+
     "<div class=\"seal-row\">"+
       "<div class=\"seal\"><div><b>"+esc(att.level)+"</b><small>seviye</small></div></div>"+
@@ -2040,6 +2280,11 @@ function renderResult(att){
     "<div class=\"row\"><a class=\"btn btn-primary\" href=\"https://t.me/alterna_turkish\" target=\"_blank\" rel=\"noopener\">"+L("Открыть канал Alterna")+"</a>"+
     "<a class=\"btn\" href=\"https://t.me/timaxmetov\" target=\"_blank\" rel=\"noopener\">"+L("Написать про доступ к платформе")+"</a></div></div>";
 
+  html+="<div class=\"plain row noprint\" style=\"justify-content:space-between\">"+
+    "<div><p class=\"eyebrow\">"+L("А что с настоящим экзаменом")+"</p>"+
+    "<p class=\"hint\" style=\"margin-top:4px;max-width:58ch\">"+L("Этот результат учебный. Сертификат, который принимают вузы, выдают Yunus Emre и университетские TÖMER. Как они устроены, сколько стоят и какой уровень требуют, собрано на отдельной странице.")+"</p></div>"+
+    "<button class=\"btn btn-sm\" id=\"btn-to-tomer\" type=\"button\">"+L("Про экзамен TÖMER")+"</button></div>";
+
   html+="<div class=\"row noprint\">"+
     "<button class=\"btn btn-primary\" id=\"btn-pdf\" type=\"button\" hidden>"+L("Скачать PDF")+"</button>"+
     "<button class=\"btn\" id=\"btn-print\" type=\"button\">"+L("Распечатать")+"</button>"+
@@ -2051,6 +2296,8 @@ function renderResult(att){
   renderLadder("ladder-result","ladder-result-detail",att.overall);
   var tb=$("btn-to-books");
   if(tb) tb.onclick=showBooks;
+  var tt=$("btn-to-tomer");
+  if(tt) tt.onclick=showTomer;
   var eg=$("btn-edit-goal");
   if(eg) eg.onclick=function(){ openProfile(function(){ renderResult(att); }); };
   $("btn-print").onclick=function(){ window.print(); };
@@ -2133,7 +2380,7 @@ function makePdf(att){
   rule();
 
   var gpp=goalPlan(att.overall);
-  line(att.name+" · "+att.modeName+" · "+att.dateLabel,11,"#101E1C",2);
+  line(att.name+" · "+(att.mode?modeName(att.mode):att.modeName)+" · "+att.dateLabel,11,"#101E1C",2);
   line(L("Цель: ")+LEVELS[gpp.p.goal]+" · "+L(whyName(gpp.p.why))+
        (gpp.reached?" · "+L("цель достигнута"):" · "+L("до цели примерно ")+gpp.hours+L(" часов")),10.5,"#A8781F",2);
   line(L("Правильных ответов: ")+att.correct+L(" из ")+att.total+L(" · время: ")+Math.floor(att.durationSec/60)+L(" мин ")+pad(att.durationSec%60)+L(" сек")+
@@ -2311,28 +2558,219 @@ function sparkline(attempts){
     "<path d=\""+d+"\" fill=\"none\" stroke=\"var(--accent)\" stroke-width=\"2\" stroke-linejoin=\"round\"></path>"+dots+"</svg>";
 }
 
+/* ---------- kabin blokları / блоки кабинета ---------- */
+function levelPct(idx){ return clamp((clamp(idx,-1,4)+1)/5*100, 0, 100); }
+
+function progressBlock(){
+  var cur = store.attempts.length ? store.attempts[0].overall : -1;
+  var p = getProfile();
+  var gp = goalPlan(cur);
+  var h="<div class=\"card stack\"><p class=\"eyebrow\">"+L("İlerleme · Ваш путь по уровням")+"</p>";
+
+  h+="<div class=\"progpath\">"+
+    "<div class=\"progbar\"><i style=\"width:"+levelPct(cur).toFixed(1)+"%\"></i>"+
+    "<u style=\"left:"+levelPct(p.goal).toFixed(1)+"%\" title=\""+L("цель")+"\"></u></div>"+
+    "<div class=\"progmarks\">"+
+      ["A0"].concat(LEVELS).map(function(l){
+        var on = (levelName(cur)===l);
+        return "<span class=\""+(on?"on":"")+"\">"+l+"</span>";
+      }).join("")+
+    "</div></div>";
+
+  var doneShare = Math.round(levelPct(cur));
+  h+="<div class=\"statgrid\">"+
+    "<div class=\"statbox\"><b>"+(store.attempts.length?esc(store.attempts[0].level):"A0")+"</b><span>"+L("сейчас")+"</span></div>"+
+    "<div class=\"statbox\"><b style=\"color:var(--gold)\">"+LEVELS[p.goal]+"</b><span>"+L("цель")+"</span></div>"+
+    "<div class=\"statbox\"><b>"+doneShare+"%</b><span>"+L("пути от нуля до C1 пройдено")+"</span></div>"+
+    "<div class=\"statbox\"><b>"+(gp.reached?"0":gp.hours)+"</b><span>"+L("учебных часов до цели")+"</span></div>"+
+    "</div>";
+
+  var t=store.totals||{sec:0,items:0,correct:0,runs:0};
+  var mins=Math.round((t.sec||0)/60);
+  var accAll = t.items ? Math.round(t.correct/t.items*100) : 0;
+  h+="<div class=\"statgrid\">"+
+    "<div class=\"statbox\"><b>"+(t.runs||0)+"</b><span>"+L("попыток всего")+"</span></div>"+
+    "<div class=\"statbox\"><b>"+(t.items||0)+"</b><span>"+L("заданий решено")+"</span></div>"+
+    "<div class=\"statbox\"><b>"+accAll+"%</b><span>"+L("верных за всё время")+"</span></div>"+
+    "<div class=\"statbox\"><b>"+(mins<1 ? L("меньше минуты") : (mins<60? mins+L(" мин") : Math.round(mins/60*10)/10+L(" ч")))+"</b><span>"+L("времени на тесты")+"</span></div>"+
+    "</div>";
+
+  if(store.attempts.length>1){
+    h+="<div class=\"stack-sm\"><p class=\"eyebrow\">"+L("Динамика уровня")+"</p>"+levelChart(store.attempts)+"</div>";
+  }
+
+  var sd=sectionDeltas();
+  if(sd.length){
+    h+="<div class=\"stack-sm\"><p class=\"eyebrow\">"+L("Как изменились секции")+"</p><div class=\"deltas\">"+
+      sd.map(function(r){
+        var cls = r.d>0.04 ? "up" : (r.d<-0.04 ? "down" : "same");
+        var sign = r.d>0.04 ? "+" : "";
+        return "<div class=\"deltarow\"><span class=\"dn\">"+esc(r.name)+"</span>"+
+          "<span class=\"twotrack\"><i style=\"width:"+Math.round(r.last*100)+"%;background:var(--accent)\"></i>"+
+          "<i style=\"width:"+Math.max(0,Math.round((1-r.last)*100))+"%;background:transparent\"></i></span>"+
+          "<span class=\"dv "+cls+"\">"+Math.round(r.last*100)+"% ("+sign+Math.round(r.d*100)+")</span></div>";
+      }).join("")+"</div>"+
+      "<p class=\"hint\">"+L("Полоса это доля верных ответов в последней попытке, в скобках изменение по сравнению с первой сохранённой.")+"</p></div>";
+  }
+
+  var m=topicMastery();
+  if(m.total){
+    h+="<div class=\"stack-sm\"><p class=\"eyebrow\">"+L("Освоение тем")+"</p>"+
+      "<div class=\"masterbar\">"+
+        "<i style=\"width:"+(m.good/m.total*100).toFixed(1)+"%;background:var(--ok)\"></i>"+
+        "<i style=\"width:"+(m.mid/m.total*100).toFixed(1)+"%;background:var(--gold)\"></i>"+
+        "<i style=\"width:"+(m.bad/m.total*100).toFixed(1)+"%;background:var(--bad)\"></i>"+
+      "</div>"+
+      "<div class=\"masterleg\">"+
+        "<em><s style=\"background:var(--ok)\"></s>"+L("уверенно: ")+m.good+"</em>"+
+        "<em><s style=\"background:var(--gold)\"></s>"+L("в работе: ")+m.mid+"</em>"+
+        "<em><s style=\"background:var(--bad)\"></s>"+L("проблемные: ")+m.bad+"</em>"+
+        "<em>"+L("всего тем затронуто: ")+m.total+"</em>"+
+      "</div></div>";
+  }
+  h+="</div>";
+  return h;
+}
+
+function sectionDeltas(){
+  var att=store.attempts.filter(function(a){ return a.sections && !a.sections.mix; });
+  if(att.length<1) return [];
+  var last=att[0], first=att[att.length-1];
+  var out=[];
+  Object.keys(last.sections).forEach(function(k){
+    var s1=last.sections[k];
+    var s0=first.sections[k];
+    out.push({name:(SEC[k]?SEC[k].ru:k), last:s1.acc, d:(s0? s1.acc-s0.acc : 0)});
+  });
+  return out;
+}
+
+function topicMastery(){
+  var t=store.topics||{}, good=0, mid=0, bad=0;
+  Object.keys(t).forEach(function(k){
+    var s=t[k]; if(!s.n) return;
+    var p=s.ok/s.n;
+    if(p>=0.8) good++; else if(p>=0.5) mid++; else bad++;
+  });
+  return {good:good, mid:mid, bad:bad, total:good+mid+bad};
+}
+
+function levelChart(attempts){
+  var pts=attempts.slice().reverse();
+  var n=pts.length;
+  if(n<2) return "";
+  var w=620,h=170,pl=34,pr=14,pt=16,pb=30;
+  var xs=pts.map(function(_,i){ return pl+i*((w-pl-pr)/(n-1)); });
+  var ys=pts.map(function(p){ var v=clamp(p.overall,-1,4); return h-pb-((v+1)/5)*(h-pt-pb); });
+  var grid="", labels=["A0"].concat(LEVELS);
+  for(var g=0;g<=5;g++){
+    var y=h-pb-(g/5)*(h-pt-pb);
+    grid+="<line x1=\""+pl+"\" y1=\""+y.toFixed(1)+"\" x2=\""+(w-pr)+"\" y2=\""+y.toFixed(1)+"\" stroke=\"var(--line)\" stroke-width=\"1\"></line>";
+    grid+="<text x=\"4\" y=\""+(y+4).toFixed(1)+"\" font-size=\"11\" fill=\"var(--muted)\" font-family=\"monospace\">"+(labels[g]||"")+"</text>";
+  }
+  var area="M"+xs[0].toFixed(1)+" "+(h-pb)+" "+xs.map(function(x,i){ return "L"+x.toFixed(1)+" "+ys[i].toFixed(1); }).join(" ")+" L"+xs[n-1].toFixed(1)+" "+(h-pb)+" Z";
+  var d=xs.map(function(x,i){ return (i?"L":"M")+x.toFixed(1)+" "+ys[i].toFixed(1); }).join(" ");
+  var dots=xs.map(function(x,i){
+    return "<circle cx=\""+x.toFixed(1)+"\" cy=\""+ys[i].toFixed(1)+"\" r=\""+(i===n-1?4.5:3)+"\" fill=\"var(--accent)\"></circle>";
+  }).join("");
+  var marks="";
+  pts.forEach(function(p,i){
+    if(n>7 && i%2===1 && i!==n-1) return;
+    var lab=(p.dateLabel||"").split(",")[0].slice(0,5);
+    marks+="<text x=\""+xs[i].toFixed(1)+"\" y=\""+(h-9)+"\" font-size=\"10\" fill=\"var(--muted)\" text-anchor=\"middle\" font-family=\"monospace\">"+esc(lab)+"</text>";
+  });
+  return "<svg viewBox=\"0 0 "+w+" "+h+"\" width=\"100%\" role=\"img\" aria-label=\""+L("Динамика уровня")+"\" style=\"max-width:100%;height:auto\">"+
+    grid+
+    "<path d=\""+area+"\" fill=\"var(--accent-soft)\" opacity=\".7\"></path>"+
+    "<path d=\""+d+"\" fill=\"none\" stroke=\"var(--accent)\" stroke-width=\"2.5\" stroke-linejoin=\"round\" stroke-linecap=\"round\"></path>"+
+    dots+marks+"</svg>";
+}
+
+function streakBlock(){
+  var d=getDaily();
+  var st=streakNow();
+  var doneToday=dailyDoneToday();
+  var today=dayKey();
+  var cells="";
+  for(var i=27;i>=0;i--){
+    var k=dayShift(today,-i);
+    var on=!!d.days[k];
+    cells+="<i class=\""+(on?"done":"")+(i===0?" today":"")+"\" title=\""+k+(on?" · "+d.days[k].ok+"/"+d.days[k].n:"")+"\"></i>";
+  }
+  return "<div class=\"card stack\">"+
+    "<div class=\"row\" style=\"justify-content:space-between;align-items:flex-start\">"+
+      "<div><p class=\"eyebrow\">"+L("Günlük antrenman · Тренировка дня")+"</p>"+
+      "<p class=\"hint\" style=\"margin-top:6px;max-width:52ch\">"+L("Десять заданий в день: сначала темы, где вы ошибались, потом задания вашего уровня. Пропущенный день обнуляет серию.")+"</p></div>"+
+      "<div class=\"streakhead\"><div><div class=\"streaknum\">"+st+"</div>"+
+      "<p class=\"hint\">"+daysWord(st)+"</p></div>"+
+      "<div><div class=\"streaknum\" style=\"color:var(--muted)\">"+d.best+"</div>"+
+      "<p class=\"hint\">"+L("рекорд")+"</p></div></div>"+
+    "</div>"+
+    "<div class=\"daygrid\">"+cells+"</div>"+
+    "<div class=\"row\">"+
+      (doneToday
+        ? "<span class=\"badge\">"+L("на сегодня сделано")+"</span><button class=\"btn btn-sm\" id=\"btn-daily\" type=\"button\">"+L("Ещё десять")+"</button>"
+        : "<button class=\"btn btn-primary\" id=\"btn-daily\" type=\"button\">"+L("Пройти тренировку дня")+"</button>")+
+    "</div></div>";
+}
+
+function profileBlock(){
+  var p=getProfile();
+  if(!store.profile){
+    return "<div class=\"card stack\" id=\"cab-profile\">"+
+      "<div><p class=\"eyebrow\">"+L("Hakkınızda · О себе")+"</p>"+
+      "<h2 style=\"margin-top:6px\">"+L("Расскажите о себе")+"</h2>"+
+      "<p class=\"hint\" style=\"margin-top:6px;max-width:60ch\">"+L("Имя, цель и сколько времени вы готовы уделять языку. Тогда кабинет покажет не просто уровень, а расстояние до цели в учебных часах и реальный срок при вашем темпе.")+"</p></div>"+
+      "<div class=\"row\"><button class=\"btn btn-primary\" id=\"btn-prof-edit\" type=\"button\">"+L("Заполнить профиль")+"</button></div></div>";
+  }
+  return "<div class=\"card stack\" id=\"cab-profile\">"+
+    "<div class=\"row\" style=\"justify-content:space-between;align-items:flex-start\">"+
+      "<div><p class=\"eyebrow\">"+L("Hakkınızda · О себе")+"</p>"+
+      "<h2 style=\"margin-top:6px\">"+esc(p.name||L("Гость"))+"</h2></div>"+
+      "<button class=\"btn btn-sm\" id=\"btn-prof-edit\" type=\"button\">"+L("Изменить")+"</button></div>"+
+    "<div class=\"statgrid\">"+
+      "<div class=\"statbox\"><b style=\"color:var(--gold)\">"+LEVELS[p.goal]+"</b><span>"+L("цель по уровню")+"</span></div>"+
+      "<div class=\"statbox\"><b style=\"font-size:1.05rem\">"+esc(L(whyName(p.why)))+"</b><span>"+L("зачем турецкий")+"</span></div>"+
+      "<div class=\"statbox\"><b>"+(p.deadline? p.deadline+L(" мес") : L("без срока"))+"</b><span>"+L("желаемый срок")+"</span></div>"+
+      "<div class=\"statbox\"><b>"+p.hours+L(" ч")+"</b><span>"+L("часов в неделю")+"</span></div>"+
+    "</div>"+
+    "<p class=\"hint\">"+esc(L(whyTip(p.why)))+"</p></div>";
+}
+
+function openProfileInline(){
+  pf=getProfile();
+  var host=$("cab-profile"); if(!host) return;
+  host.innerHTML="<p class=\"eyebrow\">"+L("Hakkınızda · О себе")+"</p>"+
+    "<h2 style=\"margin-top:-4px\">"+L("Расскажите о себе")+"</h2>"+
+    profileFieldsHtml("cf")+
+    "<div class=\"row\"><button class=\"btn btn-primary\" id=\"cf-save\" type=\"button\">"+L("Сохранить")+"</button>"+
+    "<button class=\"btn\" id=\"cf-cancel\" type=\"button\">"+L("Отмена")+"</button></div>";
+  $("cf-name").value=pf.name;
+  drawProfileChips("cf");
+  $("cf-save").onclick=function(){ saveProfileFrom("cf"); showCabinet(); renderSplashHistory(); };
+  $("cf-cancel").onclick=function(){ showCabinet(); };
+  host.scrollIntoView({block:"start"});
+}
+
 function showCabinet(){
   if(state){ openExit(function(){ showCabinet(); }); return; }
   var html="";
   html+="<div class=\"stack\"><p class=\"eyebrow\">"+L("Kişisel kabin · Личный кабинет")+"</p><h1>"+esc(store.name||L("Гость"))+"</h1>"+
-    "<p class=\"lead\">"+L("Попытки, динамика уровня и статистика по темам. Всё хранится в этом браузере и видно только вам.")+"</p></div>";
+    "<p class=\"lead\">"+L("Профиль, прогресс по уровням, серия дней и статистика по темам. Всё хранится в этом браузере и видно только вам.")+"</p></div>";
 
-  var gpc=goalPlan(store.attempts.length?store.attempts[0].overall:-1);
-  html+="<div class=\"plain row\" style=\"justify-content:space-between\">"+
-    "<div><p class=\"eyebrow\">"+L("Ваша цель")+"</p><p style=\"margin-top:4px\">"+
-    "<b style=\"color:var(--accent)\">"+(store.attempts.length?esc(store.attempts[0].level):"A0")+"</b> &#8594; "+
-    "<b style=\"color:var(--gold)\">"+LEVELS[gpc.p.goal]+"</b> · "+esc(L(whyName(gpc.p.why)))+
-    (gpc.reached?"":" · <span class=\"hint\">"+L("осталось примерно ")+gpc.hours+L(" часов")+"</span>")+"</p></div>"+
-    "<button class=\"btn btn-sm\" id=\"btn-cab-goal\" type=\"button\">"+L("Изменить")+"</button></div>";
+  html+=profileBlock();
+  html+=streakBlock();
+
   if(!store.attempts.length){
     html+="<div class=\"plain\"><p>"+L("Пока ни одной попытки. Пройдите экзамен, и здесь появится ваш уровень, история и разбор по темам.")+"</p></div>";
   } else {
+    html+=progressBlock();
+
     var best=store.attempts.reduce(function(a,b){ return b.overall>a.overall?b:a; });
     html+="<div class=\"card stack\"><div class=\"row\" style=\"justify-content:space-between;align-items:flex-end\">"+
       "<div><p class=\"eyebrow\">"+L("Текущий уровень")+"</p>"+
       "<p style=\"font-family:'Bitter','Noto Serif',Georgia,serif;font-size:2rem;font-weight:700;color:var(--accent);line-height:1.2\">"+esc(store.attempts[0].level)+"</p>"+
-      "<p class=\"hint\">"+L("Лучший результат: ")+esc(best.level)+L(" · попыток: ")+store.attempts.length+"</p></div>"+
-      "<div>"+sparkline(store.attempts)+"</div></div>"+
+      "<p class=\"hint\">"+L("Лучший результат: ")+esc(best.level)+L(" · попыток: ")+store.attempts.length+"</p></div></div>"+
       "<div class=\"ladder\" id=\"ladder-cab\"></div><div class=\"ladder-detail\" id=\"ladder-cab-detail\"></div></div>";
 
     var tk=Object.keys(store.topics);
@@ -2352,7 +2790,7 @@ function showCabinet(){
 
     html+="<div class=\"card\"><p class=\"eyebrow\" style=\"margin-bottom:8px\">"+L("История попыток")+"</p><div class=\"hist\">";
     store.attempts.forEach(function(a,i){
-      html+="<div class=\"cell\"><div class=\"dt\">"+esc(a.dateLabel)+" · "+esc(a.modeName)+"</div>"+
+      html+="<div class=\"cell\"><div class=\"dt\">"+esc(a.dateLabel)+" · "+esc(a.mode?modeName(a.mode):a.modeName)+"</div>"+
         "<div class=\"hint\">"+a.correct+L(" из ")+a.total+L(" · ошибок: ")+a.mistakes.length+"</div></div>"+
         "<div class=\"cell lvl\">"+esc(a.level)+"</div>"+
         "<div class=\"cell\"><button class=\"btn btn-sm\" type=\"button\" data-att=\""+i+L("\">Разбор")+"</button></div>";
@@ -2373,15 +2811,17 @@ function showCabinet(){
   Array.prototype.forEach.call(box.querySelectorAll("[data-att]"),function(b){
     b.onclick=function(){ renderResult(store.attempts[parseInt(b.getAttribute("data-att"),10)]); };
   });
-  var cg=$("btn-cab-goal");
-  if(cg) cg.onclick=function(){ openProfile(function(){ showCabinet(); }); };
+  var pe=$("btn-prof-edit");
+  if(pe) pe.onclick=openProfileInline;
+  var db=$("btn-daily");
+  if(db) db.onclick=function(){ store.name=store.name||"Misafir"; startExam("daily",{}); };
   $("btn-cab-start").onclick=showModes;
   var rv=$("btn-cab-review");
   if(rv) rv.onclick=function(){ store.name=store.name||"Misafir"; startExam("review",{}); };
   var ch=$("btn-clear-hist");
   if(ch) ch.onclick=function(){
     if(!window.confirm(L("Удалить все попытки и статистику по темам?"))) return;
-    store.attempts=[]; store.topics={}; saveStore(store); showCabinet(); renderSplashHistory();
+    store.attempts=[]; store.topics={}; store.totals={sec:0,items:0,correct:0,runs:0,first:null}; saveStore(store); showCabinet(); renderSplashHistory();
     renderLadder("ladder-splash","ladder-splash-detail",null);
   };
   screens("s-cabinet");
@@ -2439,6 +2879,7 @@ $("btn-home").onclick=showSplash;
 $("btn-modes").onclick=showModes;
 $("btn-cabinet").onclick=showCabinet;
 if($("btn-books")) $("btn-books").onclick=showBooks;
+if($("btn-tomer")) $("btn-tomer").onclick=showTomer;
 $("btn-intro-go").onclick=function(){ nextQuestion(); };
 $("btn-next").onclick=function(){
   if($("btn-next").disabled||!state) return;
