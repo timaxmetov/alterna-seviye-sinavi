@@ -274,11 +274,9 @@ section.anim{animation:fadeUp .34s cubic-bezier(.2,.75,.3,1) both}
 .stagger > *:nth-child(7){animation-delay:.27s}
 .stagger > *:nth-child(8){animation-delay:.31s}
 .stagger > *:nth-child(n+9){animation-delay:.34s}
-.ladder.grow .lvbar{animation:growY .55s cubic-bezier(.2,.85,.3,1) both}
-.ladder.grow .step:nth-child(2) .lvbar{animation-delay:.06s}
-.ladder.grow .step:nth-child(3) .lvbar{animation-delay:.12s}
-.ladder.grow .step:nth-child(4) .lvbar{animation-delay:.18s}
-.ladder.grow .step:nth-child(5) .lvbar{animation-delay:.24s}
+/* без fill-mode и без задержек: если анимация не успела проиграть,
+   например вкладка была в фоне, столбик всё равно виден в нормальном размере */
+.ladder.grow .lvbar{animation:growY .5s cubic-bezier(.2,.85,.3,1)}
 .track i, .progbar i, .masterbar i, .twotrack i{transition:width .7s cubic-bezier(.2,.85,.3,1)}
 .btn:active, .chk:active, .opt:active, .tcell:active, .mode:active, .chip:active{transform:scale(.985)}
 .statbox{transition:transform .16s, border-color .16s}
@@ -1441,7 +1439,10 @@ function kickAnim(el){
   void el.offsetWidth;
   el.classList.add("anim");
   var ld=el.querySelectorAll(".ladder");
-  Array.prototype.forEach.call(ld, function(l){ l.classList.remove("grow"); void l.offsetWidth; l.classList.add("grow"); });
+  Array.prototype.forEach.call(ld, function(l){
+    l.classList.remove("grow"); void l.offsetWidth; l.classList.add("grow");
+    setTimeout(function(){ l.classList.remove("grow"); }, 900);
+  });
   Array.prototype.forEach.call(el.querySelectorAll(".statgrid .statbox > b, .facts b"), countUp);
   replayBars(el);
 }
