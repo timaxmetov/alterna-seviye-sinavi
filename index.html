@@ -12566,8 +12566,19 @@ applyLang();
 
 var introEl=$("intro-splash"), introSkip=$("intro-skip");
 if(introEl){
-  var killIntro=function(){ introEl.style.display="none"; };
+  var killIntro=function(){
+    if(introEl.style.display==="none") return;
+    introEl.style.display="none";
+    try{ document.removeEventListener("pointerdown", killIntro, true); }catch(e){}
+    try{ document.removeEventListener("keydown", killIntro, true); }catch(e){}
+  };
   if(introSkip) introSkip.onclick=killIntro;
+  /* Заставка перекрывала всю страницу, и первое нажатие в эти секунды
+     пропадало впустую. Теперь её убирает любое действие человека, а в
+     фоновой вкладке, где таймеры притормаживают, она уходит при возврате. */
+  try{ document.addEventListener("pointerdown", killIntro, true); }catch(e){}
+  try{ document.addEventListener("keydown", killIntro, true); }catch(e){}
+  try{ document.addEventListener("visibilitychange", function(){ if(!document.hidden) setTimeout(killIntro, 1200); }); }catch(e){}
   setTimeout(killIntro, 3200);
 }
 /* Точка входа для автотестов. В опубликованной версии её нет: иначе
